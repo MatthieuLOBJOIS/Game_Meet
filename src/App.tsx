@@ -1,5 +1,6 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //Local imports
 import './App.css';
@@ -12,9 +13,13 @@ import Home from './pages/Home';
 const App: FunctionComponent = () => {
 	return (
 		<div className="App">
-			<Header />
-			<Home />
-			<Footer />
+			<Router>
+        <Header />
+        <Switch>
+          <Home />
+        </Switch>
+        <Footer />
+		  </Router>
 		</div>
 	);
 };

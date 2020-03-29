@@ -1,3 +1,4 @@
+//Imports of dependencies
 import React, { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => {
