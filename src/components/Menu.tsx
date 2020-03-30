@@ -9,6 +9,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Logo from '../style/logo.png';
 
 const useStyles = makeStyles({
+  menu: {
+    backgroundColor: "red",
+    position: "fixed",
+    zIndex: 1000
+
+  },
   paperAnchorLeft: {
     backgroundColor: '#161c2e',
   },
@@ -42,7 +48,7 @@ const Menu = () => {
 
   const anchor = 'left';
   return (
-    <div>
+    <div className={classes.menu}>
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}><MenuIcon/></Button>
           <Drawer classes={{paperAnchorLeft: classes.paperAnchorLeft}} anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
