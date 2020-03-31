@@ -1,11 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import * as parkData from '../data/marker-parks.json';
 import '../index.css';
 
 const MapLeaflet: FunctionComponent = () => {
-	const [ activePark, setActivePark ] = React.useState(null);
-
 	return (
 		<Map center={[ 45.4, -75.7 ]} zoom={12}>
 			<TileLayer
@@ -16,10 +14,14 @@ const MapLeaflet: FunctionComponent = () => {
 				<Marker
 					key={park.properties.PARK_ID}
 					position={[ park.geometry.coordinates[1], park.geometry.coordinates[0] ]}
-					onClick={() => {
-						//setActivePark(park);
-					}}
-				/>
+				>
+					<Popup>
+						<div>
+							<h2>{park.properties.NAME}</h2>
+							<p>{park.properties.DESCRIPTIO}</p>
+						</div>
+					</Popup>
+				</Marker>
 			))}
 		</Map>
 	);
