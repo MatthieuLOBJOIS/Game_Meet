@@ -1,10 +1,13 @@
+//Imports of dependencies
 import React, {FunctionComponent} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-import Field from './Field';
+//Local imports
+import Fields from './Fields';
 import ButtonSubmit from './ButtonSubmit';
+import Modal from './Modal';
 import '../index.css';
 
 type Props = {
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Login: FunctionComponent<Props> = ({handleClose}) => {
+const Form: FunctionComponent<Props> = ({handleClose}) => {
   const classes = useStyles();
 
   return (
@@ -33,7 +36,7 @@ const Login: FunctionComponent<Props> = ({handleClose}) => {
         <Typography className={classes.typo} variant="h5" component="h2">
           Connexion
 				</Typography>
-      <Field />
+      <Fields />
       <ButtonSubmit/>
       <Typography className={classes.root}>
       <Link href="#" onClick={handleClose}>
@@ -44,4 +47,4 @@ const Login: FunctionComponent<Props> = ({handleClose}) => {
   );
 }
 
-export default Login;
+export default Form;

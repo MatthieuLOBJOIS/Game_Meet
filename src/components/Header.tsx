@@ -1,14 +1,14 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
 
-//Local imports*
+//Local imports
 import Menu from './Menu';
-import ModalLogin from './ModalLogin';
+import Modal from './Modal';
 
 const Header: FunctionComponent = () => {
 	return (<div>
 		<Menu/>
-		<ModalLogin/>
+		<Modal/>
 	</div>
 			
 	);

@@ -1,3 +1,4 @@
+//Imports of dependencies
 import React from 'react';
 import {
   createStyles,

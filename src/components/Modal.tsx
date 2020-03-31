@@ -1,10 +1,12 @@
+//Imports of dependencies
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
 
-import Login from './Login';
+//Local imports
+import Form from './Form';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -81,7 +83,7 @@ export default function SpringModal() {
       >
         <Fade in={open}>
         <div className={classes.paper}>
-        <Login handleClose={handleClose} />
+        <Form handleClose={handleClose} />
           </div>
         </Fade>
       </Modal>
