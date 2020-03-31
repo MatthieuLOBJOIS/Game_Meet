@@ -5,8 +5,10 @@ import React, { FunctionComponent } from 'react';
 import Menu from './Menu';
 
 const Header: FunctionComponent = () => {
-	return (
-			<Menu/>
+	return (<div>
+		<Menu/>
+	</div>
+			
 	);
 };
 

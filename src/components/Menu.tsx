@@ -2,15 +2,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Drawer, Button} from '@material-ui/core';
-
-import MenuIcon from '@material-ui/icons/Menu';
+import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 
 //Local imports*
 import Logo from '../style/logo.png';
 
 const useStyles = makeStyles({
   menu: {
-    backgroundColor: "red",
     position: "fixed",
     zIndex: 1000
 
@@ -21,6 +19,9 @@ const useStyles = makeStyles({
   logo: {
     height: '20em',
     width: '20em'
+  },
+  button: {
+    color: "#161c2e"
   }
 });
 
@@ -50,7 +51,7 @@ const Menu = () => {
   return (
     <div className={classes.menu}>
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}><MenuIcon/></Button>
+          <Button onClick={toggleDrawer(anchor, true)}><ViewComfyIcon fontSize="large" color="primary" classes={{colorPrimary: classes.button}}/></Button>
           <Drawer classes={{paperAnchorLeft: classes.paperAnchorLeft}} anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
           <img className={classes.logo} src={Logo} />
           </Drawer>
