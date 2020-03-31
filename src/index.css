@@ -25,3 +25,7 @@ code {
   filter: hue-rotate(160deg);
   -webkit-filter: hue-rotate(160deg);
 }
+
+.MuiFormLabel-colorSecondary.Mui-focused {
+  color: 'red'
+}
