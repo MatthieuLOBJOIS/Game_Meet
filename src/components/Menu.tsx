@@ -3,10 +3,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Drawer, Button } from '@material-ui/core';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
+import Typography from '@material-ui/core/Typography';
 
 //Local imports*
 import Logo from '../style/logo.png';
 import FriendsList from './FriendsList';
+import SearchBar from './SearchBar';
 
 const useStyles = makeStyles({
 	menu: {
@@ -22,6 +24,10 @@ const useStyles = makeStyles({
 	},
 	button: {
 		color: '#161c2e'
+	},
+	typo: {
+		color: 'white',
+		textAlign: 'center'
 	}
 });
 
@@ -58,6 +64,10 @@ const Menu = () => {
 					onClose={toggleDrawer(anchor, false)}
 				>
 					<img className={classes.logo} src={Logo} />
+					<SearchBar />
+					<Typography className={classes.typo} variant="h6" component="h2">
+						Messages privés
+					</Typography>
 					<FriendsList />
 				</Drawer>
 			</React.Fragment>
