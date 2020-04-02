@@ -3,14 +3,15 @@ import React, { FunctionComponent } from 'react';
 
 //Local imports
 import Menu from './Menu';
-import Modal from './Modal';
+import ModalForm from './ModalForm';
 
 const Header: FunctionComponent = () => {
-	return (<div>
-		<Menu/>
-		<Modal/>
-	</div>
-			
+	return (
+		<div>
+			<Menu />
+			<ModalForm formType="login" />
+			<ModalForm formType="register" />
+		</div>
 	);
 };
 

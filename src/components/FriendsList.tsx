@@ -45,9 +45,8 @@ export default function FriendsList() {
 							<Avatar />
 						</ListItemAvatar>
 						<ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-						<ListItemSecondaryAction>
-							<CloseIcon className={classes.close} />
-						</ListItemSecondaryAction>
+
+						<CloseIcon className={classes.close} />
 					</StyledListItem>
 				);
 			})}

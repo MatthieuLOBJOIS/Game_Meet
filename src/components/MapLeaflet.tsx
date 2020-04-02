@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import * as parkData from '../data/marker-parks.json';
-import '../index.css';
+import '../style/index.css';
 
 const MapLeaflet: FunctionComponent = () => {
 	return (

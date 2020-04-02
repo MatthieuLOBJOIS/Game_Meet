@@ -6,7 +6,7 @@ import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import Typography from '@material-ui/core/Typography';
 
 //Local imports*
-import Logo from '../style/logo.png';
+import Logo from '../assets/logo.png';
 import FriendsList from './FriendsList';
 import SearchBar from './SearchBar';
 
