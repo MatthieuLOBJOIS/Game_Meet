@@ -1,12 +1,19 @@
+//Imports of dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style/index.css';
+import { Provider } from 'react-redux';
+
+//Local imports
 import App from './App';
+import './style/index.css';
 import * as serviceWorker from './serviceWorker';
+import store from './store';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<Provider store={store}>
+		  <App />
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
