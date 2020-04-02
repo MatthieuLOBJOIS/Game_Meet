@@ -4,9 +4,12 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
+import Typography from '@material-ui/core/Typography';
+//import Link from '@material-ui/core/Link';
+import { Link, useLocation } from 'react-router-dom';
 
 //Local imports
-import Form from './Form';
+import Form from '../containers/Form';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -19,12 +22,18 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.background.paper,
 			boxShadow: theme.shadows[5],
 			padding: theme.spacing(2, 4, 3)
-		}
+		},
+		root: {
+			'& > *': {
+				margin: theme.spacing(1),
+				width: '25ch'
+			}
+		},
 	})
 );
 
 type Props = {
-	formType: String;
+	login: String;
 };
 
 interface FadeProps {
@@ -58,8 +67,9 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 	);
 });
 
-const ModalForm: FunctionComponent<Props> = ({ formType }) => {
+const ModalForm: FunctionComponent<Props> = ({ login }) => {
 	const classes = useStyles();
+	let location = useLocation();
 	const [ open, setOpen ] = React.useState(true);
 
 	const handleOpen = () => {
@@ -86,7 +96,14 @@ const ModalForm: FunctionComponent<Props> = ({ formType }) => {
 			>
 				<Fade in={open}>
 					<div className={classes.paper}>
-						<Form handleClose={handleClose} />
+						<Form />
+						{location.pathname === `/${login}` &&
+						<Typography className={classes.root}>
+							<Link to="/inscription">
+					      Inscription
+				      </Link>
+				    </Typography>
+						}
 					</div>
 				</Fade>
 			</Modal>

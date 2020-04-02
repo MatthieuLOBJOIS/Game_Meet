@@ -6,7 +6,7 @@ import { Grid } from '@material-ui/core';
 //Local imports
 
 //Components
-import Header from './components/Header';
+import Header from './containers/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 
@@ -17,7 +17,7 @@ const App: FunctionComponent = () => {
 				<Router>
 					<Header />
 					<Switch>
-						<Route exact path="/" component={Home} />
+						<Route path="/" component={Home} />
 					</Switch>
 					<Footer />
 				</Router>

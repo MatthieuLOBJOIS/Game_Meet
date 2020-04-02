@@ -2,7 +2,7 @@
 import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { useLocation } from 'react-router-dom';
 
 //Local imports
 import Fields from './Fields';
@@ -10,7 +10,7 @@ import ButtonSubmit from './ButtonSubmit';
 import '../style/index.css';
 
 type Props = {
-	handleClose: any;
+	login: String;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,21 +27,17 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({ handleClose }) => {
+const Form: FunctionComponent<Props> = ({login}) => {
 	const classes = useStyles();
+	let location = useLocation();
 
 	return (
 		<form className={classes.root} noValidate autoComplete="off">
 			<Typography className={classes.typo} variant="h5" component="h2">
-				Connexion
+			{location.pathname === `/${login}` && `${login[0].toUpperCase()}${login.slice(1)}`}
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
-			<Typography className={classes.root}>
-				<Link href="#" onClick={handleClose}>
-					Inscription
-				</Link>
-			</Typography>
 		</form>
 	);
 };
