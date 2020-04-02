@@ -8,20 +8,20 @@ import Menu from './Menu';
 import ModalForm from '../containers/ModalForm';
 
 type Props = {
-	login: String;
+  login: String;
+  register: String;
 };
 
-const Header: FunctionComponent<Props> = ({login}) => {
+const Header: FunctionComponent<Props> = ({login, register}) => {
 	return (
 		<div>
 			<Menu />
 			<Route path={`/${login}`}>
 				<ModalForm />
 			</Route>
-			<Route path="/inscription">
+			<Route path={`/${register}`}>
 				<ModalForm />
 			</Route>
-
 		</div>
 	);
 };

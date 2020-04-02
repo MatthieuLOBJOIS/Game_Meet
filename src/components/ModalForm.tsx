@@ -11,6 +11,11 @@ import { Link, useLocation } from 'react-router-dom';
 //Local imports
 import Form from '../containers/Form';
 
+type Props = {
+	login: String;
+	register: String;
+};
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		modal: {
@@ -32,9 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-type Props = {
-	login: String;
-};
+
 
 interface FadeProps {
 	children?: React.ReactElement;
@@ -67,7 +70,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 	);
 });
 
-const ModalForm: FunctionComponent<Props> = ({ login }) => {
+const ModalForm: FunctionComponent<Props> = ({ login, register }) => {
 	const classes = useStyles();
 	let location = useLocation();
 	const [ open, setOpen ] = React.useState(true);
@@ -99,8 +102,8 @@ const ModalForm: FunctionComponent<Props> = ({ login }) => {
 						<Form />
 						{location.pathname === `/${login}` &&
 						<Typography className={classes.root}>
-							<Link to="/inscription">
-					      Inscription
+							<Link to={`${register}`}>
+							{`${register[0].toUpperCase()}${register.slice(1)}`}
 				      </Link>
 				    </Typography>
 						}

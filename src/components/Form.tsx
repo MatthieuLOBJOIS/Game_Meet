@@ -11,6 +11,7 @@ import '../style/index.css';
 
 type Props = {
 	login: String;
+	register: String;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({login}) => {
+const Form: FunctionComponent<Props> = ({login, register}) => {
 	const classes = useStyles();
 	let location = useLocation();
 
@@ -35,6 +36,7 @@ const Form: FunctionComponent<Props> = ({login}) => {
 		<form className={classes.root} noValidate autoComplete="off">
 			<Typography className={classes.typo} variant="h5" component="h2">
 			{location.pathname === `/${login}` && `${login[0].toUpperCase()}${login.slice(1)}`}
+			{location.pathname === `/${register}` && `${register[0].toUpperCase()}${register.slice(1)}`}
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
