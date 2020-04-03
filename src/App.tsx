@@ -9,15 +9,22 @@ import { Grid } from '@material-ui/core';
 import Header from './containers/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import ErrorNotFound from './pages/ErrorNotFound';
 
-const App: FunctionComponent = () => {
+type Props = {
+	login: String;
+	register: String;
+};
+
+const App: FunctionComponent<Props> = ({ login, register }) => {
 	return (
 		<div>
 			<Grid container>
 				<Router>
 					<Header />
 					<Switch>
-						<Route path="/" component={Home} />
+						<Route exact path={[ '/', `/${login}`, `/${register}` ]} component={Home} />
+						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
 				</Router>
