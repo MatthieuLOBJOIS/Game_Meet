@@ -5,14 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import { useLocation } from 'react-router-dom';
 
 //Local imports
-import Fields from './Fields';
+import Fields from '../containers/Fields';
 import ButtonSubmit from './ButtonSubmit';
 import '../style/index.css';
-
-type Props = {
-	login: String;
-	register: String;
-};
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -28,15 +23,14 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({login, register}) => {
+const Form: FunctionComponent = () => {
 	const classes = useStyles();
 	let location = useLocation();
 
 	return (
 		<form className={classes.root} noValidate autoComplete="off">
 			<Typography className={classes.typo} variant="h5" component="h2">
-			{location.pathname === `/${login}` && `${login[0].toUpperCase()}${login.slice(1)}`}
-			{location.pathname === `/${register}` && `${register[0].toUpperCase()}${register.slice(1)}`}
+				{`${location.pathname[1].toUpperCase()}${location.pathname.slice(2)}`}
 			</Typography>
 			<Fields />
 			<ButtonSubmit />

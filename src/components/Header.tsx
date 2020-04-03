@@ -15,12 +15,7 @@ const Header: FunctionComponent<Props> = ({ login, register }) => {
 	return (
 		<div>
 			<Menu />
-			<Route path={`/${login}`}>
-				<ModalForm />
-			</Route>
-			<Route path={`/${register}`}>
-				<ModalForm />
-			</Route>
+			<Route path={[ `/${login}`, `/${register}` ]} component={ModalForm} />
 		</div>
 	);
 };
