@@ -26,7 +26,7 @@ const ButtonSubmit: FunctionComponent = () => {
 	return (
 		<div>
 			<ThemeProvider theme={theme}>
-				<Button variant="contained" color="primary" className={classes.margin}>
+				<Button type="submit" variant="contained" color="primary" className={classes.margin}>
 					{location.pathname.slice(1)}
 				</Button>
 			</ThemeProvider>

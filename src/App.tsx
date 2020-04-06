@@ -1,6 +1,6 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 //Local imports
@@ -17,6 +17,7 @@ type Props = {
 };
 
 const App: FunctionComponent<Props> = ({ login, register }) => {
+	let loggedIn = false;
 	return (
 		<div>
 			<Grid container>
@@ -27,6 +28,7 @@ const App: FunctionComponent<Props> = ({ login, register }) => {
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
+					{!loggedIn && <Redirect from="/" to={`/${login}`} />};
 				</Router>
 			</Grid>
 		</div>

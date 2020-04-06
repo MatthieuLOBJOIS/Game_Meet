@@ -9,6 +9,12 @@ import Fields from '../containers/Fields';
 import ButtonSubmit from './ButtonSubmit';
 import '../style/index.css';
 
+type Props = {
+	login: String;
+	register: String;
+	handleSubmit: any;
+};
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -23,12 +29,17 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent = () => {
+const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
 	const classes = useStyles();
 	let location = useLocation();
 
 	return (
-		<form className={classes.root} noValidate autoComplete="off">
+		<form
+			onSubmit={handleSubmit(location.pathname.slice(1), login, register)}
+			className={classes.root}
+			noValidate
+			autoComplete="off"
+		>
 			<Typography className={classes.typo} variant="h5" component="h2">
 				{`${location.pathname[1].toUpperCase()}${location.pathname.slice(2)}`}
 			</Typography>
