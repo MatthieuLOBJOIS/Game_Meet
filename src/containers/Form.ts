@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import Form from '../components/Form';
+import {logIn} from '../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -13,14 +14,15 @@ const mapDispatchToProps = (dispatch: any) => ({
 			event.preventDefault();
 			switch (location) {
 				case login: {
-					return console.log('login');
+					return dispatch(logIn());
 				}
 				case register: {
 					return console.log('register');
 				}
 			}
 		};
-	}
+  }
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

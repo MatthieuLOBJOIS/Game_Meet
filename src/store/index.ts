@@ -1,23 +1,20 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import userMiddleware from '../middleware/userMiddleware';
 import reducer from '../reducers';
-// import recipesMiddleware from '../middleware/recipesMiddleware';
-// import userMiddleware from '../middleware/userMiddleware';
 
-// const enhancers = composeWithDevTools(
-//   applyMiddleware(
-//     recipesMiddleware,
-//     userMiddleware,
-//     // ... d'autres middlewares
-//   ),
-// );
+
+const enhancers = composeWithDevTools(
+  applyMiddleware(
+    userMiddleware,
+    // ... others middlewares
+  ),
+);
 
 const store = createStore(
-  // reducer
   reducer,
-  // enhancer
-  //enhancers,
+  enhancers,
 );
 
 export default store;
