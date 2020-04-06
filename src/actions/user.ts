@@ -1,6 +1,7 @@
 //action type
 export const CHANGE_FIELD = 'CHANGE_FIELD';
 export const SHOW_PASSWORD = 'SHOW_PASSWORD';
+export const VALIDATE_FIELD = 'VALIDATE_FIELD';
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const SAVE_USER = 'SAVE_USER';
@@ -11,6 +12,10 @@ export const changeField = (newValue: string, identifier: string) => ({
 	type: CHANGE_FIELD,
 	newValue,
 	identifier
+});
+
+export const validateField = () => ({
+	type: VALIDATE_FIELD
 });
 
 export const showPassword = () => ({
@@ -31,6 +36,7 @@ export const saveUser = (isLogged: boolean, userData: any) => ({
 	isLogged
 });
 
-export const checkLogged = () => ({
-	type: CHECK_LOGGED
+export const checkLogged = (response: boolean) => ({
+  type: CHECK_LOGGED,
+  response
 });

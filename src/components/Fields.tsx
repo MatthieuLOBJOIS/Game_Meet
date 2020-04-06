@@ -7,9 +7,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-
 type Props = {
 	login: String;
 	register: String;

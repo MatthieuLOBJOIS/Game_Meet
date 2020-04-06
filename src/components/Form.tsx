@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useLocation } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
 
 //Local imports
 import Fields from '../containers/Fields';
@@ -13,6 +14,7 @@ type Props = {
 	login: String;
 	register: String;
 	handleSubmit: any;
+	isLogged: boolean;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
+const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isLogged }) => {
 	const classes = useStyles();
 	let location = useLocation();
 
@@ -45,6 +47,9 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
+			{isLogged === false && <Alert variant="outlined" severity="error">
+        Alert — Vos donnée saisies sont incorrect veuillez ressayer !
+      </Alert>}
 		</form>
 	);
 };

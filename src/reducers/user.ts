@@ -1,11 +1,11 @@
-import { CHANGE_FIELD, SHOW_PASSWORD, SAVE_USER } from '../actions/user';
+import { CHANGE_FIELD, SHOW_PASSWORD, CHECK_LOGGED, SAVE_USER } from '../actions/user';
 
 const initialState = {
 	mail: '',
 	password: '',
 	showPassword: false,
 	userData: null,
-	isLogged: false
+	isLogged: null
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -21,7 +21,16 @@ const userReducer = (state = initialState, action: any) => {
 
 		case SHOW_PASSWORD: {
 			return { ...state, showPassword: !state.showPassword };
-		}
+    }
+    
+    case CHECK_LOGGED: {
+      console.log(action.response)
+      return {
+				...state,
+
+				isLogged: action.response
+			};
+    }
 
 		case SAVE_USER:
 			return {
