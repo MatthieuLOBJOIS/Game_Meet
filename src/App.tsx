@@ -14,10 +14,11 @@ import ErrorNotFound from './pages/ErrorNotFound';
 type Props = {
 	login: String;
 	register: String;
+	isLogged: boolean;
 };
 
-const App: FunctionComponent<Props> = ({ login, register }) => {
-	let loggedIn = false;
+const App: FunctionComponent<Props> = ({ login, register, isLogged }) => {
+	let user = JSON.parse(localStorage.getItem('isUser') || '{}');
 	return (
 		<div>
 			<Grid container>
@@ -28,7 +29,7 @@ const App: FunctionComponent<Props> = ({ login, register }) => {
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
-					{!loggedIn && <Redirect from="/" to={`/${login}`} />};
+					{user.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
 				</Router>
 			</Grid>
 		</div>

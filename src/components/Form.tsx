@@ -2,7 +2,7 @@
 import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 
 //Local imports
@@ -14,7 +14,6 @@ type Props = {
 	login: String;
 	register: String;
 	handleSubmit: any;
-	isLogged: boolean;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,9 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isLogged }) => {
+const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
 	const classes = useStyles();
 	let location = useLocation();
+	let history = useHistory();
+
+	let user = JSON.parse(localStorage.getItem('isUser') || '{}');
+	user.isLogged === true && history.push('/');
 
 	return (
 		<form
@@ -47,9 +50,11 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isLogge
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
-			{isLogged === false && <Alert variant="outlined" severity="error">
-        Alert — Vos donnée saisies sont incorrect veuillez ressayer !
-      </Alert>}
+			{user.isLogged === false && (
+				<Alert variant="outlined" severity="error">
+					Alert — Vos donnée saisies sont incorrect veuillez ressayer !
+				</Alert>
+			)}
 		</form>
 	);
 };

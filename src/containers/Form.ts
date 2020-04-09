@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 
 import Form from '../components/Form';
-import {logIn} from '../actions/user';
+import { logIn } from '../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
 	register: state.register.name,
 	isLogged: state.user.isLogged,
+	isUser: state.user
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -22,8 +23,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 				}
 			}
 		};
-  }
-  
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

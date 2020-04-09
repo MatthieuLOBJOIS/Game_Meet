@@ -37,6 +37,6 @@ export const saveUser = (isLogged: boolean, userData: any) => ({
 });
 
 export const checkLogged = (response: boolean) => ({
-  type: CHECK_LOGGED,
-  response
+	type: CHECK_LOGGED,
+	response
 });

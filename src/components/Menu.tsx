@@ -69,6 +69,15 @@ const Menu = () => {
 						Messages privés
 					</Typography>
 					<FriendsList />
+					<Button
+						onClick={() => {
+							window.location.reload();
+							localStorage.clear();
+						}}
+						color="secondary"
+					>
+						Deconnexion
+					</Button>
 				</Drawer>
 			</React.Fragment>
 		</div>

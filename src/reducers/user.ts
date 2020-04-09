@@ -21,16 +21,27 @@ const userReducer = (state = initialState, action: any) => {
 
 		case SHOW_PASSWORD: {
 			return { ...state, showPassword: !state.showPassword };
-    }
-    
-    case CHECK_LOGGED: {
-      console.log(action.response)
-      return {
+		}
+
+		case SHOW_CONFIRM_PASSWORD: {
+			return { ...state, showConfirmPassword: !state.showConfirmPassword };
+		}
+
+		case CHECK_LOGGED: {
+			localStorage.setItem(
+				'isUser',
+				JSON.stringify({
+					...state,
+
+					isLogged: action.response
+				})
+			);
+			return {
 				...state,
 
 				isLogged: action.response
 			};
-    }
+		}
 
 		case SAVE_USER:
 			return {
