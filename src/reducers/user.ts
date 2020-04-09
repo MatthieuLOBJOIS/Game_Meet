@@ -1,9 +1,11 @@
-import { CHANGE_FIELD, SHOW_PASSWORD, CHECK_LOGGED, SAVE_USER } from '../actions/user';
+import { CHANGE_FIELD, SHOW_PASSWORD, SHOW_CONFIRM_PASSWORD, CHECK_LOGGED, SAVE_USER } from '../actions/user';
 
 const initialState = {
 	mail: '',
 	password: '',
+	confirmPassword: '',
 	showPassword: false,
+	showConfirmPassword: false,
 	userData: null,
 	isLogged: null
 };

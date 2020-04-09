@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 
 import Fields from '../components/Fields';
-import { changeField, showPassword } from '../actions/user';
+import { changeField, showPassword, showConfirmPassword } from '../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
 	register: state.register.name,
 	password: state.user.password,
-	showPassword: state.user.showPassword
+	confirmPassword: state.user.confirmPassword,
+	showPassword: state.user.showPassword,
+	showConfirmPassword: state.user.showConfirmPassword
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -20,8 +22,17 @@ const mapDispatchToProps = (dispatch: any) => ({
 	handleMouseDownPassword: (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 	},
-	handleClickShowPassword: () => {
-		dispatch(showPassword());
+	handleClickShowPassword: (type: string) => {
+		return () => {
+			switch (type) {
+				case 'creatPassword': {
+					return dispatch(showPassword());
+				}
+				case 'confirmPassword': {
+					return dispatch(showConfirmPassword());
+				}
+			}
+		};
 	}
 });
 
