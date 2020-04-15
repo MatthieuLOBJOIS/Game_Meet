@@ -1,3 +1,4 @@
+//Imports of dependencies
 import React, { FunctionComponent } from 'react';
 import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

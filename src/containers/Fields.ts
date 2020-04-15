@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import Fields from '../components/Fields';
 import { changeField, showPassword, showConfirmPassword } from '../actions/user';
+import { snapGame } from '../actions/games';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -9,7 +10,8 @@ const mapStateToProps = (state: any) => ({
 	password: state.user.password,
 	confirmPassword: state.user.confirmPassword,
 	showPassword: state.user.showPassword,
-	showConfirmPassword: state.user.showConfirmPassword
+	showConfirmPassword: state.user.showConfirmPassword,
+	games: state.games.listGames
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -33,6 +35,9 @@ const mapDispatchToProps = (dispatch: any) => ({
 				}
 			}
 		};
+	},
+	getListGames: () => {
+		dispatch(snapGame());
 	}
 });
 
