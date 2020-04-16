@@ -2,20 +2,17 @@
 import React, { FunctionComponent } from 'react';
 import { useLocation } from 'react-router-dom';
 import { createStyles, Theme, ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
-import { TextField, IconButton, InputAdornment } from '@material-ui/core';
 
 //Local imports
 import SelectField from '../../containers/Fields/SelectField';
 import SimpleField from '../../containers/Fields/SimpleField';
+import PasswordField from '../../containers/Fields/PasswordField';
 
 type Props = {
-	login: String;
 	register: String;
 	changeField: any;
 	password: string;
 	confirmPassword: string;
-	handleMouseDownPassword: any;
 	handleClickShowPassword: any;
 	showPassword: boolean;
 	showConfirmPassword: boolean;
@@ -46,12 +43,10 @@ const theme = createMuiTheme({
 });
 
 const Fields: FunctionComponent<Props> = ({
-	login,
 	register,
 	changeField,
 	password,
 	confirmPassword,
-	handleMouseDownPassword,
 	handleClickShowPassword,
 	showPassword,
 	showConfirmPassword
@@ -62,53 +57,28 @@ const Fields: FunctionComponent<Props> = ({
 	return (
 		<div className={classes.root}>
 			<ThemeProvider theme={theme}>
-				<SimpleField label="Entrée votre mail" id="mail" type="email" />
-				<TextField
-					className={classes.margin}
-					onChange={changeField}
-					type={showPassword ? 'text' : 'password'}
+				<SimpleField label="Entrée votre mail" id="mail" type="email" changeField={changeField} />
+				<PasswordField
+					type={showPassword}
 					value={password}
 					label="Entrée votre mot de passe"
 					id="password"
-					InputProps={{
-						endAdornment: (
-							<InputAdornment className={classes.adornment} position="end">
-								<IconButton
-									aria-label="toggle password visibility"
-									onClick={handleClickShowPassword('creatPassword')}
-									onMouseDown={handleMouseDownPassword}
-								>
-									{showPassword ? <Visibility /> : <VisibilityOff />}
-								</IconButton>
-							</InputAdornment>
-						)
-					}}
+					handleClickShowPassword={handleClickShowPassword('creatPassword')}
+					changeField={changeField}
 				/>
+
 				{location.pathname === `/${register}` && (
 					<div>
-						<TextField
-							className={classes.margin}
-							onChange={changeField}
-							type={showConfirmPassword ? 'text' : 'password'}
+						<PasswordField
+							type={showConfirmPassword}
 							value={confirmPassword}
 							label="Confirme mot de passe"
 							id="confirmPassword"
-							InputProps={{
-								endAdornment: (
-									<InputAdornment className={classes.adornment} position="end">
-										<IconButton
-											aria-label="toggle password visibility"
-											onClick={handleClickShowPassword('confirmPassword')}
-											onMouseDown={handleMouseDownPassword}
-										>
-											{showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-										</IconButton>
-									</InputAdornment>
-								)
-							}}
+							handleClickShowPassword={handleClickShowPassword('confirmPassword')}
+							changeField={changeField}
 						/>
-						<SimpleField label="Entrée votre pseudo" id="pseudo" type="text" />
-						<SimpleField label="Entrée votre ville" id="city" type="text" />
+						<SimpleField label="Entrée votre pseudo" id="pseudo" type="text" changeField={changeField} />
+						<SimpleField label="Entrée votre ville" id="city" type="text" changeField={changeField} />
 						<SelectField />
 					</div>
 				)}
