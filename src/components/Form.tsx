@@ -1,12 +1,12 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useLocation, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 
 //Local imports
-import Fields from '../containers/Fields';
+import Fields from '../containers/Fields/Fields';
 import ButtonSubmit from './ButtonSubmit';
 import '../style/index.css';
 
