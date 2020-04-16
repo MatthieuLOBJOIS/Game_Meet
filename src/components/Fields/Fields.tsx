@@ -7,6 +7,7 @@ import { TextField, IconButton, InputAdornment } from '@material-ui/core';
 
 //Local imports
 import SelectField from '../../containers/Fields/SelectField';
+import SimpleField from '../../containers/Fields/SimpleField';
 
 type Props = {
 	login: String;
@@ -61,13 +62,7 @@ const Fields: FunctionComponent<Props> = ({
 	return (
 		<div className={classes.root}>
 			<ThemeProvider theme={theme}>
-				<TextField
-					className={classes.margin}
-					onChange={changeField}
-					label="Entrée votre mail"
-					id="mail"
-					type="email"
-				/>
+				<SimpleField label="Entrée votre mail" id="mail" type="email" />
 				<TextField
 					className={classes.margin}
 					onChange={changeField}
@@ -112,20 +107,8 @@ const Fields: FunctionComponent<Props> = ({
 								)
 							}}
 						/>
-						<TextField
-							className={classes.margin}
-							onChange={changeField}
-							label="Entrée votre pseudo"
-							id="pseudo"
-							type="text"
-						/>
-						<TextField
-							className={classes.margin}
-							onChange={changeField}
-							label="Entrée votre ville"
-							id="city"
-							type="text"
-						/>
+						<SimpleField label="Entrée votre pseudo" id="pseudo" type="text" />
+						<SimpleField label="Entrée votre ville" id="city" type="text" />
 						<SelectField />
 					</div>
 				)}
