@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Form from '../components/Form';
-import { logIn } from '../actions/user';
+import { logIn, saveUser } from '../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 					return dispatch(logIn());
 				}
 				case register: {
-					return console.log('register');
+					return dispatch(saveUser());
 				}
 			}
 		};

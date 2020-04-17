@@ -1,5 +1,5 @@
 //Imports of dependencies
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { createStyles, Theme, ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
 
@@ -11,11 +11,14 @@ import PasswordField from '../../containers/Fields/PasswordField';
 type Props = {
 	register: String;
 	changeField: any;
+	userCoordinate: any;
 	password: string;
 	confirmPassword: string;
 	handleClickShowPassword: any;
 	showPassword: boolean;
 	showConfirmPassword: boolean;
+	city: string;
+	address: string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,15 +48,24 @@ const theme = createMuiTheme({
 const Fields: FunctionComponent<Props> = ({
 	register,
 	changeField,
+	userCoordinate,
 	password,
 	confirmPassword,
 	handleClickShowPassword,
 	showPassword,
-	showConfirmPassword
+	showConfirmPassword,
+	city,
+	address
 }) => {
 	const classes = useStyles();
 	let location = useLocation();
 
+	useEffect(
+		() => {
+			userCoordinate();
+		},
+		[ city, address ]
+	);
 	return (
 		<div className={classes.root}>
 			<ThemeProvider theme={theme}>

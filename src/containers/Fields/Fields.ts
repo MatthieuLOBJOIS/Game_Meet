@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Fields from '../../components/Fields/Fields';
-import { changeField, showPassword, showConfirmPassword } from '../../actions/user';
+import { changeField, userCoordinate, showPassword, showConfirmPassword } from '../../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -9,7 +9,9 @@ const mapStateToProps = (state: any) => ({
 	password: state.user.password,
 	confirmPassword: state.user.confirmPassword,
 	showPassword: state.user.showPassword,
-	showConfirmPassword: state.user.showConfirmPassword
+	showConfirmPassword: state.user.showConfirmPassword,
+	city: state.user.city,
+	address: state.user.address
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -18,6 +20,9 @@ const mapDispatchToProps = (dispatch: any) => ({
 		let identifier = event.target.id;
 		//console.log(newValue, identifier);
 		dispatch(changeField(newValue, identifier));
+	},
+	userCoordinate: () => {
+		dispatch(userCoordinate());
 	},
 	handleMouseDownPassword: (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault();

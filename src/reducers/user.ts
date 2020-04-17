@@ -58,14 +58,26 @@ const userReducer = (state = initialState, action: any) => {
 			};
 		}
 
-		case SAVE_USER:
+		case CHOOSE_GAMES: {
 			return {
 				...state,
-				userData: action.data,
-				isLogged: action.isLogged,
-				email: '',
-				password: ''
+
+				chooseGames: action.data
 			};
+		}
+
+		case SAVE_USER_COORDINATE: {
+			return { ...state, location: action.data };
+		}
+
+		// case SAVE_USER:
+		// 	return {
+		// 		...state,
+		// 		userData: action.data,
+		// 		isLogged: action.isLogged,
+		// 		email: '',
+		// 		password: ''
+		// 	};
 
 		default:
 			return state;
