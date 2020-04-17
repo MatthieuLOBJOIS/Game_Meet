@@ -11,6 +11,9 @@ import '../../style/index.css';
 type Props = {
 	getListGames: any;
 	games: any;
+	id: string;
+	chooseGames: any;
+	changeGames: any;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,9 +36,16 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const SelectField: FunctionComponent<Props> = ({ getListGames, games }) => {
+const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, chooseGames, changeGames }) => {
 	const classes = useStyles();
 	const theme = useTheme();
+	const [ gameName, setGameName ] = React.useState<string[]>([]);
+	useEffect(
+		() => {
+			changeGames(gameName);
+		},
+		[ gameName ]
+	);
 	useEffect(() => {
 		getListGames();
 	}, []);
@@ -57,8 +67,6 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games }) => {
 		};
 	}
 
-	const [ gameName, setGameName ] = React.useState<string[]>([]);
-
 	const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		setGameName(event.target.value as string[]);
 	};
@@ -69,7 +77,7 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games }) => {
 			<Select
 				className={classes.select}
 				labelId="demo-mutiple-chip-label"
-				id="demo-mutiple-chip"
+				id={id}
 				multiple
 				value={gameName}
 				onChange={handleChange}

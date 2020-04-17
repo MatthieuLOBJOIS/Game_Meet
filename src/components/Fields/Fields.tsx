@@ -79,7 +79,8 @@ const Fields: FunctionComponent<Props> = ({
 						/>
 						<SimpleField label="Entrée votre pseudo" id="pseudo" type="text" changeField={changeField} />
 						<SimpleField label="Entrée votre ville" id="city" type="text" changeField={changeField} />
-						<SelectField />
+						<SimpleField label="Entrée votre adresse" id="address" type="text" changeField={changeField} />
+						<SelectField id="chooseGames" />
 					</div>
 				)}
 			</ThemeProvider>

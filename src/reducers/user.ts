@@ -1,9 +1,22 @@
-import { CHANGE_FIELD, SHOW_PASSWORD, SHOW_CONFIRM_PASSWORD, CHECK_LOGGED, SAVE_USER } from '../actions/user';
+import {
+	CHANGE_FIELD,
+	SHOW_PASSWORD,
+	SHOW_CONFIRM_PASSWORD,
+	CHECK_LOGGED,
+	SAVE_USER,
+	SAVE_USER_COORDINATE
+} from '../actions/user';
+import { CHOOSE_GAMES } from '../actions/games';
 
 const initialState = {
 	mail: '',
 	password: '',
 	confirmPassword: '',
+	pseudo: '',
+	city: '',
+	address: '',
+	location: {},
+	chooseGames: [],
 	showPassword: false,
 	showConfirmPassword: false,
 	userData: null,
