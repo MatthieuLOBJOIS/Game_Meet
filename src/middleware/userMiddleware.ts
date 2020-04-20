@@ -1,5 +1,6 @@
 import { LOG_IN, checkLogged, SAVE_USER, USER_COORDINATE, saveUserCoordinate } from '../actions/user';
 import fire from '../config/fire';
+import { validateField } from '../services/validateField';
 
 const userMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {
@@ -48,7 +49,13 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 		}
 		case SAVE_USER: {
 			let user = store.getState().user;
-			console.log(user);
+			const valid = validateField(user);
+
+			if (valid) {
+				console.log('execute firebase');
+			} else {
+				console.log('error');
+			}
 		}
 		default:
 			next(action);
