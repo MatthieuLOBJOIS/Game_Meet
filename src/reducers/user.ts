@@ -27,6 +27,7 @@ const userReducer = (state = initialState, action: any) => {
 	switch (action.type) {
 		case CHANGE_FIELD: {
 			const target = action.identifier;
+
 			return {
 				...state,
 

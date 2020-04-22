@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import Fields from '../../components/Fields/Fields';
 import { changeField, userCoordinate, showPassword, showConfirmPassword } from '../../actions/user';
+import { validateChangeField } from '../../actions/register';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -11,7 +12,9 @@ const mapStateToProps = (state: any) => ({
 	showPassword: state.user.showPassword,
 	showConfirmPassword: state.user.showConfirmPassword,
 	city: state.user.city,
-	address: state.user.address
+	address: state.user.address,
+	valid: state.register,
+	isSubmit: state.register.isSubmit
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -20,6 +23,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 		let identifier = event.target.id;
 		//console.log(newValue, identifier);
 		dispatch(changeField(newValue, identifier));
+		dispatch(validateChangeField(newValue, identifier));
 	},
 	userCoordinate: () => {
 		dispatch(userCoordinate());

@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 	handleSubmit: (location: string, login: any, register: string) => {
 		return (event: any) => {
 			event.preventDefault();
+
 			switch (location) {
 				case login: {
 					return dispatch(logIn());

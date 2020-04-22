@@ -5,15 +5,16 @@ import { Input, InputLabel } from '@material-ui/core';
 
 //Local imports
 
-import { Select, MenuItem, Chip, FormControl } from '@material-ui/core';
+import { Select, MenuItem, Chip, FormControl, FormHelperText } from '@material-ui/core';
 import '../../style/index.css';
 
 type Props = {
 	getListGames: any;
 	games: any;
 	id: string;
-	chooseGames: any;
 	changeGames: any;
+	error: boolean;
+	message: string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,16 +37,19 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, chooseGames, changeGames }) => {
+const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, changeGames, error, message }) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ gameName, setGameName ] = React.useState<string[]>([]);
+	const [ objectGames, setObjectGames ] = React.useState({});
 	useEffect(
 		() => {
-			changeGames(gameName);
+			const identifier = Object.values(objectGames)[1];
+			changeGames(gameName, identifier);
 		},
 		[ gameName ]
 	);
+
 	useEffect(() => {
 		getListGames();
 	}, []);
@@ -69,14 +73,17 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, choose
 
 	const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		setGameName(event.target.value as string[]);
+		console.log(event.currentTarget);
+		setObjectGames(event.target);
 	};
 
 	return (
-		<FormControl className={classes.formControl}>
+		<FormControl error={error} className={classes.formControl}>
 			<InputLabel id="demo-mutiple-chip-label">Choisi tes jeux : </InputLabel>
 			<Select
 				className={classes.select}
 				labelId="demo-mutiple-chip-label"
+				name={id}
 				id={id}
 				multiple
 				value={gameName}
@@ -102,6 +109,7 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, choose
 					</MenuItem>
 				))}
 			</Select>
+			<FormHelperText>{message}</FormHelperText>
 		</FormControl>
 	);
 };

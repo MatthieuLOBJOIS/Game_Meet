@@ -1,6 +1,7 @@
 import { LOG_IN, checkLogged, SAVE_USER, USER_COORDINATE, saveUserCoordinate } from '../actions/user';
 import fire from '../config/fire';
-import { validateField } from '../services/validateField';
+import { validField } from '../services/validateField';
+import { VALIDATE_CHANGE_FIELD, validStatusField } from '../actions/register';
 
 const userMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {
@@ -47,14 +48,31 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			};
 			return getLocalization(city, address);
 		}
-		case SAVE_USER: {
-			let user = store.getState().user;
-			const valid = validateField(user);
+		case VALIDATE_CHANGE_FIELD: {
+			const user = store.getState().user;
+			const target = action.identifier;
 
-			if (valid) {
+			const status = validField(user, target).status;
+			const message = validField(user, target).message;
+
+			return store.dispatch(validStatusField(status === false ? true : false, message, target));
+
+			//[target]: action.newValue
+		}
+		case SAVE_USER: {
+			const register = store.getState().register;
+			const mail = !register.mail.status;
+			const password = !register.password.status;
+			const confirmPassword = !register.confirmPassword.status;
+			const pseudo = !register.pseudo.status;
+			const city = !register.city.status;
+			const address = !register.address.status;
+			const games = !register.chooseGames.status;
+
+			if (mail && password && confirmPassword && pseudo && city && address && games) {
 				console.log('execute firebase');
 			} else {
-				console.log('error');
+				console.log('error register');
 			}
 		}
 		default:

@@ -13,6 +13,8 @@ type Props = {
 	label: string;
 	id: string;
 	handleClickShowPassword: any;
+	error: boolean;
+	message: string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,7 +36,9 @@ const Fields: FunctionComponent<Props> = ({
 	value,
 	label,
 	id,
-	handleClickShowPassword
+	handleClickShowPassword,
+	error,
+	message
 }) => {
 	const classes = useStyles();
 
@@ -46,6 +50,8 @@ const Fields: FunctionComponent<Props> = ({
 			value={value}
 			label={label}
 			id={id}
+			error={error}
+			helperText={message}
 			InputProps={{
 				endAdornment: (
 					<InputAdornment className={classes.adornment} position="end">

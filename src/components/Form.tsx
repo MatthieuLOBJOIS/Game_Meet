@@ -14,6 +14,7 @@ type Props = {
 	login: String;
 	register: String;
 	handleSubmit: any;
+	isUser: any;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
+const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser }) => {
 	const classes = useStyles();
 	let location = useLocation();
 	let history = useHistory();
@@ -50,7 +51,8 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register }) => {
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
-			{user.isLogged === false && (
+			{user.isLogged === false &&
+			location.pathname === `/${login}` && (
 				<Alert variant="outlined" severity="error">
 					Alert — Vos donnée saisies sont incorrect veuillez ressayer !
 				</Alert>
