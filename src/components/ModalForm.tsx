@@ -14,6 +14,7 @@ import Form from '../containers/Form';
 type Props = {
 	login: String;
 	register: String;
+	isRegister: boolean;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,11 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(1),
 				width: '25ch'
 			}
-		},
+		}
 	})
 );
-
-
 
 interface FadeProps {
 	children?: React.ReactElement;
@@ -70,7 +69,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 	);
 });
 
-const ModalForm: FunctionComponent<Props> = ({ login, register }) => {
+const ModalForm: FunctionComponent<Props> = ({ login, register, isRegister }) => {
 	const classes = useStyles();
 	let location = useLocation();
 	const [ open, setOpen ] = React.useState(true);
@@ -100,13 +99,24 @@ const ModalForm: FunctionComponent<Props> = ({ login, register }) => {
 				<Fade in={open}>
 					<div className={classes.paper}>
 						<Form />
-						{location.pathname === `/${login}` &&
-						<Typography className={classes.root}>
-							<Link to={`${register}`}>
-							{`${register[0].toUpperCase()}${register.slice(1)}`}
-				      </Link>
-				    </Typography>
-						}
+						{location.pathname === `/${login}` && (
+							<Typography className={classes.root}>
+								<Link to={`${register}`}>{`${register[0].toUpperCase()}${register.slice(1)}`}</Link>
+							</Typography>
+						)}
+						{isRegister === true && (
+							<span
+								style={{
+									position: 'absolute',
+									top: '20%',
+									color: '#ef6c35',
+									textAlign: 'center',
+									backgroundColor: 'red'
+								}}
+							>
+								Votre compte à était enregisté !
+							</span>
+						)}
 					</div>
 				</Fade>
 			</Modal>

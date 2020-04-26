@@ -15,9 +15,10 @@ type Props = {
 	login: String;
 	register: String;
 	isLogged: boolean;
+	isRegister: boolean;
 };
 
-const App: FunctionComponent<Props> = ({ login, register, isLogged }) => {
+const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister }) => {
 	let user = JSON.parse(localStorage.getItem('isUser') || '{}');
 	return (
 		<div>
@@ -30,6 +31,7 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged }) => {
 					</Switch>
 					<Footer />
 					{user.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
+					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />};
 				</Router>
 			</Grid>
 		</div>

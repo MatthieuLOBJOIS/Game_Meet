@@ -1,4 +1,4 @@
-import { VALID_STATUS_FIELD, VALIDATE_CHANGE_FIELD } from '../actions/register';
+import { VALID_STATUS_FIELD, SIGNUP_ERROR, SIGNUP_SUCCESS } from '../actions/register';
 import { SAVE_USER } from '../actions/user';
 //import { validField } from '../services/validateField';
 import { validStatusField } from '../actions/register';
@@ -6,6 +6,7 @@ const initialMessage = 'veuillez remplir ce champ';
 const initialState = {
 	name: 'inscription',
 	isSubmit: false,
+	isRegister: false,
 	mail: {
 		status: true,
 		message: initialMessage
@@ -53,6 +54,15 @@ const registerReducer = (state = initialState, action: any) => {
 		}
 		case SAVE_USER: {
 			return { ...state, isSubmit: true };
+		}
+
+		case SIGNUP_ERROR: {
+			console.log('error firestore');
+		}
+
+		case SIGNUP_SUCCESS: {
+			console.log('success firestore');
+			return { ...state, isRegister: true };
 		}
 
 		default:

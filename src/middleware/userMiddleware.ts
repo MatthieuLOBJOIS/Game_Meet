@@ -1,7 +1,15 @@
-import { LOG_IN, checkLogged, SAVE_USER, USER_COORDINATE, saveUserCoordinate } from '../actions/user';
-import fire from '../config/fire';
+import {
+	LOG_IN,
+	checkLogged,
+	SAVE_USER,
+	USER_COORDINATE,
+	saveUserCoordinate,
+	SNAP_USERS,
+	listDataUsers
+} from '../actions/user';
+import fire, { db } from '../config/fire';
 import { validField } from '../services/validateField';
-import { VALIDATE_CHANGE_FIELD, validStatusField } from '../actions/register';
+import { VALIDATE_CHANGE_FIELD, validStatusField, signupSuccess, signupError } from '../actions/register';
 
 const userMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {
@@ -14,11 +22,11 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 				.signInWithEmailAndPassword(mail, password)
 				.then((response) => {
 					console.log(response, 'success');
-					store.dispatch(checkLogged(true));
+					return store.dispatch(checkLogged(true));
 				})
 				.catch((err) => {
 					console.warn(err, 'error');
-					store.dispatch(checkLogged(false));
+					return store.dispatch(checkLogged(false));
 				});
 		}
 		case USER_COORDINATE: {
@@ -56,10 +64,9 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			const message = validField(user, target).message;
 
 			return store.dispatch(validStatusField(status === false ? true : false, message, target));
-
-			//[target]: action.newValue
 		}
 		case SAVE_USER: {
+			const user = store.getState().user;
 			const register = store.getState().register;
 			const mail = !register.mail.status;
 			const password = !register.password.status;

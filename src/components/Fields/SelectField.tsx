@@ -73,7 +73,6 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, change
 
 	const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		setGameName(event.target.value as string[]);
-		console.log(event.currentTarget);
 		setObjectGames(event.target);
 	};
 
