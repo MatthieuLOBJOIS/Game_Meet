@@ -4,7 +4,8 @@ import {
 	SHOW_CONFIRM_PASSWORD,
 	CHECK_LOGGED,
 	SAVE_USER,
-	SAVE_USER_COORDINATE
+	SAVE_USER_COORDINATE,
+	LIST_DATA_USERS
 } from '../actions/user';
 import { CHOOSE_GAMES } from '../actions/games';
 
@@ -20,7 +21,8 @@ const initialState = {
 	showPassword: false,
 	showConfirmPassword: false,
 	userData: null,
-	isLogged: null
+	isLogged: null,
+	listUsersData: []
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -71,14 +73,14 @@ const userReducer = (state = initialState, action: any) => {
 			return { ...state, location: action.data };
 		}
 
-		// case SAVE_USER:
-		// 	return {
-		// 		...state,
-		// 		userData: action.data,
-		// 		isLogged: action.isLogged,
-		// 		email: '',
-		// 		password: ''
-		// 	};
+		case LIST_DATA_USERS: {
+			//console.log(action.data, 'userdata');
+			return {
+				...state,
+
+				listUsersData: action.data
+			};
+		}
 
 		default:
 			return state;

@@ -9,6 +9,8 @@ export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const SAVE_USER = 'SAVE_USER';
 export const CHECK_LOGGED = 'CHECK_LOGGED';
+export const SNAP_USERS = 'SNAP_USERS';
+export const LIST_DATA_USERS = 'LIST_DATA_USERS';
 
 //action creators
 export const changeField = (newValue: string, identifier: string) => ({
@@ -53,4 +55,13 @@ export const saveUser = () => ({
 export const checkLogged = (response: boolean) => ({
 	type: CHECK_LOGGED,
 	response
+});
+
+export const snapUsers = () => ({
+	type: SNAP_USERS
+});
+
+export const listDataUsers = (dataUsers: any) => ({
+	type: LIST_DATA_USERS,
+	data: dataUsers
 });

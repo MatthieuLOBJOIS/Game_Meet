@@ -1,7 +1,7 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
 import { Grid } from '@material-ui/core';
-import MapLeaflet from '../components/MapLeaflet';
+import MapLeaflet from '../containers/MapLeaflet';
 
 const Home: FunctionComponent = () => {
 	return (

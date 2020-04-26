@@ -77,10 +77,41 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			const games = !register.chooseGames.status;
 
 			if (mail && password && confirmPassword && pseudo && city && address && games) {
-				console.log('execute firebase');
+				console.log('execute firebase', user);
+				fire
+					.auth()
+					.createUserWithEmailAndPassword(user.mail, user.password)
+					.then((resp: any) => {
+						db.collection('users').doc(resp.user.uid).set({
+							pseudo: user.pseudo,
+							city: user.city,
+							address: user.address,
+							location: user.location,
+							games: user.chooseGames
+						});
+					})
+					.then(() => {
+						return store.dispatch(signupSuccess());
+					})
+					.catch((err) => {
+						return store.dispatch(signupError(err));
+					});
 			} else {
 				console.log('error register');
 			}
+		}
+
+		case SNAP_USERS: {
+			console.log('get user');
+			let dataUsers: any = [];
+			db.collection('users').get().then(function(querySnapshot) {
+				querySnapshot.forEach(function(doc) {
+					dataUsers.push(doc.data());
+				});
+
+				//console.log(dataUsers);
+				return store.dispatch(listDataUsers(dataUsers));
+			});
 		}
 		default:
 			next(action);
