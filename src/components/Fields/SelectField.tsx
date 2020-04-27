@@ -9,7 +9,6 @@ import { Select, MenuItem, Chip, FormControl, FormHelperText } from '@material-u
 import '../../style/index.css';
 
 type Props = {
-	getListGames: any;
 	games: any;
 	id: string;
 	changeGames: any;
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, changeGames, error, message }) => {
+const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, error, message }) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ gameName, setGameName ] = React.useState<string[]>([]);
@@ -50,9 +49,6 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, change
 		[ gameName ]
 	);
 
-	useEffect(() => {
-		getListGames();
-	}, []);
 	const ITEM_HEIGHT = 48;
 	const ITEM_PADDING_TOP = 8;
 	const MenuProps = {

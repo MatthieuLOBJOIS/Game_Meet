@@ -77,9 +77,23 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			const city = !register.city.status;
 			const address = !register.address.status;
 			const games = !register.chooseGames.status;
+			const gamesState = store.getState().games.listGames;
+
+			//console.log(gamesState);
+			const refPictureGames: any = [];
+			gamesState.map((game: any) => {
+				user.chooseGames.map((aGame: any) => {
+					if (game.name === aGame) {
+						//console.log(game.name, '=>', game, 'choose', aGame);
+						refPictureGames.push(game);
+					}
+				});
+			});
+
+			//console.log(refPictureGames);
 
 			if (mail && password && confirmPassword && pseudo && city && address && games) {
-				console.log('execute firebase', user);
+				//console.log('execute firebase', user);
 				fire
 					.auth()
 					.createUserWithEmailAndPassword(user.mail, user.password)
@@ -89,7 +103,7 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 							city: user.city,
 							address: user.address,
 							location: user.location,
-							games: user.chooseGames
+							games: refPictureGames
 						});
 					})
 					.then(() => {
