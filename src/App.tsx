@@ -1,5 +1,5 @@
 //Imports of dependencies
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
@@ -16,10 +16,20 @@ type Props = {
 	register: String;
 	isLogged: boolean;
 	isRegister: boolean;
+	sessionData: any;
+	getListGames: any;
 };
 
-const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister }) => {
-	let user = JSON.parse(localStorage.getItem('isUser') || '{}');
+const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, sessionData, getListGames }) => {
+	useEffect(() => {
+		getListGames();
+	}, []);
+	if (isLogged === true) {
+		localStorage.setItem('isUser', JSON.stringify({ isLogged, sessionData }));
+	}
+
+	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+	//console.log(sessionUser);
 	return (
 		<div>
 			<Grid container>
@@ -30,7 +40,7 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister }
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
-					{user.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
+					{sessionUser.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
 					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />};
 				</Router>
 			</Grid>

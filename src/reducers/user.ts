@@ -22,7 +22,8 @@ const initialState = {
 	showConfirmPassword: false,
 	userData: null,
 	isLogged: null,
-	listUsersData: []
+	listUsersData: [],
+	sessionData: null
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -46,18 +47,11 @@ const userReducer = (state = initialState, action: any) => {
 		}
 
 		case CHECK_LOGGED: {
-			localStorage.setItem(
-				'isUser',
-				JSON.stringify({
-					...state,
-
-					isLogged: action.response
-				})
-			);
 			return {
 				...state,
 
-				isLogged: action.response
+				isLogged: action.response,
+				sessionData: action.data
 			};
 		}
 
