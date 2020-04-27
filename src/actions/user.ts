@@ -52,9 +52,10 @@ export const saveUser = () => ({
 	type: SAVE_USER
 });
 
-export const checkLogged = (response: boolean) => ({
+export const checkLogged = (response: boolean, dataUser: any = {}) => ({
 	type: CHECK_LOGGED,
-	response
+	response,
+	data: dataUser
 });
 
 export const snapUsers = () => ({

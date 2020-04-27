@@ -100,11 +100,11 @@ const SelectField: FunctionComponent<Props> = ({ getListGames, games, id, change
 				{games.map((name: any) => (
 					<MenuItem
 						className="MuiListItem-root.Mui-selected"
-						key={name}
-						value={name}
-						style={getStyles(name, gameName, theme)}
+						key={name.name}
+						value={name.name}
+						style={getStyles(name.name, gameName, theme)}
 					>
-						{name}
+						{name.name}
 					</MenuItem>
 				))}
 			</Select>

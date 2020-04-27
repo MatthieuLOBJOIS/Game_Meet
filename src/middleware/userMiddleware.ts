@@ -20,9 +20,11 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			fire
 				.auth()
 				.signInWithEmailAndPassword(mail, password)
-				.then((response) => {
-					console.log(response, 'success');
-					return store.dispatch(checkLogged(true));
+				.then((response: any) => {
+					db.collection('users').doc(response.user.uid).get().then(function(querySnapshot) {
+						//console.log(querySnapshot.data(), 'success');
+						return store.dispatch(checkLogged(true, querySnapshot.data()));
+					});
 				})
 				.catch((err) => {
 					console.warn(err, 'error');
@@ -97,19 +99,17 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 						return store.dispatch(signupError(err));
 					});
 			} else {
-				console.log('error register');
+				//console.log('error register');
 			}
 		}
 
 		case SNAP_USERS: {
-			console.log('get user');
 			let dataUsers: any = [];
 			db.collection('users').get().then(function(querySnapshot) {
 				querySnapshot.forEach(function(doc) {
 					dataUsers.push(doc.data());
 				});
 
-				//console.log(dataUsers);
 				return store.dispatch(listDataUsers(dataUsers));
 			});
 		}
