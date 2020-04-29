@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../style/index.css';
 
 type Props = {
 	snapUsers: any;
-	data: any;
+	data: Array<Object>;
 };
 
 const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
@@ -33,7 +33,21 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 					<Popup>
 						<div>
 							<h2>{user.pseudo}</h2>
+							<p>{user.city}</p>
 							<p>{user.address}</p>
+							<div>
+								{user.games.map(
+									(game: { name: string; studio: string; type: string; picture: string }) => {
+										return (
+											<img
+												src={game.picture}
+												style={{ height: '50px', width: '50px' }}
+												alt={`logo du jeu: ${game.name}`}
+											/>
+										);
+									}
+								)}
+							</div>
 						</div>
 					</Popup>
 				</Marker>
