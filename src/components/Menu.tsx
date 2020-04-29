@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Logo from '../assets/logo.png';
 import FriendsList from './FriendsList';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
 	menu: {
@@ -63,7 +64,9 @@ const Menu = () => {
 					open={state[anchor]}
 					onClose={toggleDrawer(anchor, false)}
 				>
-					<img className={classes.logo} src={Logo} />
+					<Link to="/">
+						<img className={classes.logo} src={Logo} />
+					</Link>
 					<SearchBar />
 					<Typography className={classes.typo} variant="h6" component="h2">
 						Messages privés

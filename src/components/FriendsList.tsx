@@ -4,6 +4,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import ChatIcon from '@material-ui/icons/Chat';
+import { Link } from 'react-router-dom';
 
 //Local imports*
 import Avatar from './Avatar';
@@ -50,7 +51,13 @@ export default function FriendsList() {
 								<Avatar />
 							</ListItemAvatar>
 							<ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-							{`${value}` === display.value ? <ChatIcon className={classes.iconColor} /> : ''}
+							{`${value}` === display.value ? (
+								<Link to="/chatroom">
+									<ChatIcon className={classes.iconColor} />
+								</Link>
+							) : (
+								''
+							)}
 							{`${value}` === display.value ? <CloseIcon className={classes.iconColor} /> : ''}
 						</ListItem>
 					</div>
