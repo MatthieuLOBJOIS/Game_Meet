@@ -79,42 +79,43 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 			const games = !register.chooseGames.status;
 			const gamesState = store.getState().games.listGames;
 
-			//console.log(gamesState);
 			const refPictureGames: any = [];
+
 			gamesState.map((game: any) => {
 				user.chooseGames.map((aGame: any) => {
 					if (game.name === aGame) {
+						let storageRef = fire.storage().ref(game.picture);
 						//console.log(game.name, '=>', game, 'choose', aGame);
-						refPictureGames.push(game);
+						storageRef.getDownloadURL().then(async (url) => {
+							game.picture = url;
+							refPictureGames.push(game);
+
+							if (mail && password && confirmPassword && pseudo && city && address && games) {
+								fire
+									.auth()
+									.createUserWithEmailAndPassword(user.mail, user.password)
+									.then((resp: any) => {
+										db.collection('users').doc(resp.user.uid).set({
+											pseudo: user.pseudo,
+											city: user.city,
+											address: user.address,
+											location: user.location,
+											games: refPictureGames
+										});
+									})
+									.then(() => {
+										return store.dispatch(signupSuccess());
+									})
+									.catch((err) => {
+										return store.dispatch(signupError(err));
+									});
+							} else {
+								//console.log('error register');
+							}
+						});
 					}
 				});
 			});
-
-			//console.log(refPictureGames);
-
-			if (mail && password && confirmPassword && pseudo && city && address && games) {
-				//console.log('execute firebase', user);
-				fire
-					.auth()
-					.createUserWithEmailAndPassword(user.mail, user.password)
-					.then((resp: any) => {
-						db.collection('users').doc(resp.user.uid).set({
-							pseudo: user.pseudo,
-							city: user.city,
-							address: user.address,
-							location: user.location,
-							games: refPictureGames
-						});
-					})
-					.then(() => {
-						return store.dispatch(signupSuccess());
-					})
-					.catch((err) => {
-						return store.dispatch(signupError(err));
-					});
-			} else {
-				//console.log('error register');
-			}
 		}
 
 		case SNAP_USERS: {
