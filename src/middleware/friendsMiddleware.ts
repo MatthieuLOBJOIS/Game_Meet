@@ -1,4 +1,4 @@
-import { ADD_NEW_FRIENDS, saveListFriends, GET_LIST_FRIENDS } from '../actions/friends';
+import { ADD_NEW_FRIENDS, saveListFriends, GET_LIST_FRIENDS, DELETE_FRIENDS } from '../actions/friends';
 import fire, { db } from '../config/fire';
 
 const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
@@ -19,6 +19,23 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 			}
 			return console.log('its a friend');
 		}
+
+		case DELETE_FRIENDS: {
+			const friends = action.value;
+			const uid = action.uid;
+			const listFriends = action.listFriends;
+			const newListFriends = listFriends.filter((name: any) => {
+				if (name != friends) {
+					return name;
+				}
+			});
+			console.log(friends, uid, newListFriends);
+
+			return db.collection('users').doc(uid).update({
+				friends: newListFriends
+			});
+		}
+
 		case GET_LIST_FRIENDS: {
 			const uid = action.uid;
 			//console.log(uid);

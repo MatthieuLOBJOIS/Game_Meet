@@ -12,9 +12,10 @@ import Avatar from './Avatar';
 type Props = {
 	getListFriends: any;
 	listFriends: any;
+	deleteFriends: any;
 };
 
-const FriendsList: FunctionComponent<Props> = ({ getListFriends, listFriends }) => {
+const FriendsList: FunctionComponent<Props> = ({ getListFriends, listFriends, deleteFriends }) => {
 	const [ display, setDisplay ] = useState({ status: 'none', value: '' });
 	const [ listColor, setListColor ] = useState({ background: '#161c2e', color: 'white' });
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
@@ -68,7 +69,14 @@ const FriendsList: FunctionComponent<Props> = ({ getListFriends, listFriends }) 
 							) : (
 								''
 							)}
-							{`${value}` === display.value ? <CloseIcon className={classes.iconColor} /> : ''}
+							{`${value}` === display.value ? (
+								<CloseIcon
+									onClick={deleteFriends(value, sessionLogin.uid, listFriends)}
+									className={classes.iconColor}
+								/>
+							) : (
+								''
+							)}
 						</ListItem>
 					</div>
 				);
