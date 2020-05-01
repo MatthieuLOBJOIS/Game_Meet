@@ -5,7 +5,8 @@ import {
 	CHECK_LOGGED,
 	SAVE_USER,
 	SAVE_USER_COORDINATE,
-	LIST_DATA_USERS
+	LIST_DATA_USERS,
+	ACTUALIZE_DATA_USER
 } from '../actions/user';
 import { CHOOSE_GAMES } from '../actions/games';
 
@@ -47,10 +48,10 @@ const userReducer = (state = initialState, action: any) => {
 		}
 
 		case CHECK_LOGGED: {
+			localStorage.setItem('isLogged', JSON.stringify({ isLogged: action.response, uid: action.data.uid }));
 			return {
 				...state,
 
-				isLogged: action.response,
 				sessionData: action.data
 			};
 		}
@@ -73,6 +74,13 @@ const userReducer = (state = initialState, action: any) => {
 				...state,
 
 				listUsersData: action.data
+			};
+		}
+		case ACTUALIZE_DATA_USER: {
+			return {
+				...state,
+
+				sessionData: action.data
 			};
 		}
 

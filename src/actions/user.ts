@@ -7,10 +7,16 @@ export const SHOW_CONFIRM_PASSWORD = 'SHOW_CONFIRM_PASSWORD';
 export const VALIDATE_FIELD = 'VALIDATE_FIELD';
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
+// register user
 export const SAVE_USER = 'SAVE_USER';
+// login user
 export const CHECK_LOGGED = 'CHECK_LOGGED';
+//get list users data
 export const SNAP_USERS = 'SNAP_USERS';
 export const LIST_DATA_USERS = 'LIST_DATA_USERS';
+//get user data connected
+export const TAKE_DATA_USER = 'TAKE_DATA_USER';
+export const ACTUALIZE_DATA_USER = 'ACTUALIZE_DATA_USER';
 
 //action creators
 export const changeField = (newValue: string, identifier: string) => ({
@@ -65,4 +71,14 @@ export const snapUsers = () => ({
 export const listDataUsers = (dataUsers: any) => ({
 	type: LIST_DATA_USERS,
 	data: dataUsers
+});
+
+export const takeDataUser = (uid: string) => ({
+	type: TAKE_DATA_USER,
+	uid
+});
+
+export const actualizeDataUser = (dataUser: any) => ({
+	type: ACTUALIZE_DATA_USER,
+	data: dataUser
 });

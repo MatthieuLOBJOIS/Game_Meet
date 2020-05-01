@@ -19,18 +19,36 @@ type Props = {
 	isRegister: boolean;
 	sessionData: any;
 	getListGames: any;
+	takeDataUser: any;
+	listFriends: any;
+	getListFriends: any;
 };
 
-const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, sessionData, getListGames }) => {
+const App: FunctionComponent<Props> = ({
+	login,
+	register,
+	isLogged,
+	isRegister,
+	sessionData,
+	getListGames,
+	takeDataUser,
+	listFriends,
+	getListFriends
+}) => {
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	useEffect(() => {
+		sessionLogin.isLogged === true && takeDataUser(sessionLogin.uid);
 		getListGames();
+		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
 	}, []);
-	if (isLogged === true) {
-		localStorage.setItem('isUser', JSON.stringify({ isLogged, sessionData }));
+
+	if (sessionLogin.isLogged === true && sessionData !== null) {
+		localStorage.setItem('isUser', JSON.stringify({ sessionData }));
 	}
 
-	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
-	//console.log(sessionUser);
+	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+	//console.log(sessionUser.sessionData.friends, listFriends, '=>', listFriends);
+	//console.log(sessionLogin, sessionUser);
 	return (
 		<div>
 			<Grid container>
@@ -42,7 +60,7 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, 
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
-					{sessionUser.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
+					{sessionLogin.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
 					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />};
 				</Router>
 			</Grid>

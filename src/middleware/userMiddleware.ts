@@ -1,11 +1,13 @@
 import {
 	LOG_IN,
-	checkLogged,
 	SAVE_USER,
 	USER_COORDINATE,
-	saveUserCoordinate,
 	SNAP_USERS,
-	listDataUsers
+	TAKE_DATA_USER,
+	checkLogged,
+	saveUserCoordinate,
+	listDataUsers,
+	actualizeDataUser
 } from '../actions/user';
 import fire, { db } from '../config/fire';
 import { validField } from '../services/validateField';
@@ -21,8 +23,9 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 				.auth()
 				.signInWithEmailAndPassword(mail, password)
 				.then((response: any) => {
+					//console.log(response.user.uid);
 					db.collection('users').doc(response.user.uid).get().then(function(querySnapshot) {
-						//console.log(querySnapshot.data(), 'success');
+						//console.log(querySnapshot.data(), 'success', response);
 						return store.dispatch(checkLogged(true, querySnapshot.data()));
 					});
 				})
@@ -30,6 +33,16 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 					console.warn(err, 'error');
 					return store.dispatch(checkLogged(false));
 				});
+		}
+		case TAKE_DATA_USER: {
+			const uid = action.uid;
+			//console.log(uid, 'ww');
+			if (uid !== undefined) {
+				db.collection('users').doc(uid).get().then(function(querySnapshot) {
+					//console.log(querySnapshot.data(), 'success');
+					return store.dispatch(actualizeDataUser(querySnapshot.data()));
+				});
+			}
 		}
 		case USER_COORDINATE: {
 			let city = store.getState().user.city;
@@ -85,7 +98,8 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 				user.chooseGames.map((aGame: any) => {
 					if (game.name === aGame) {
 						let storageRef = fire.storage().ref(game.picture);
-						//console.log(game.name, '=>', game, 'choose', aGame);
+						console.log(game.name, '=>', game, 'choose', aGame);
+						console.log(user.mail, user.password);
 						storageRef.getDownloadURL().then(async (url) => {
 							game.picture = url;
 							refPictureGames.push(game);
@@ -100,7 +114,9 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 											city: user.city,
 											address: user.address,
 											location: user.location,
-											games: refPictureGames
+											games: refPictureGames,
+											friends: [],
+											uid: resp.user.uid
 										});
 									})
 									.then(() => {
@@ -110,7 +126,7 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 										return store.dispatch(signupError(err));
 									});
 							} else {
-								//console.log('error register');
+								console.log('error register');
 							}
 						});
 					}
@@ -128,6 +144,7 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 				return store.dispatch(listDataUsers(dataUsers));
 			});
 		}
+
 		default:
 			next(action);
 	}

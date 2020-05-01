@@ -1,14 +1,20 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../style/index.css';
+import ButtonAddFriends from '../containers/ButtonAddFriends';
 
 type Props = {
 	snapUsers: any;
-	data: Array<Object>;
+	data: Array<Object> | any;
+	listFriends: any;
 };
 
-const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
+const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) => {
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
+
+	//console.log(sessionUser.sessionData.friends, listFriends);
+
 	useEffect(() => {
 		snapUsers();
 	}, []);
@@ -16,7 +22,7 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 	return (
 		<Map
 			center={
-				sessionUser.isLogged !== true ? (
+				sessionLogin.isLogged !== true ? (
 					[ 45.4, -75.7 ]
 				) : (
 					[ sessionUser.sessionData.location.lat, sessionUser.sessionData.location.lng ]
@@ -49,6 +55,15 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 									}
 								)}
 							</div>
+							{sessionLogin.isLogged === true && sessionUser.sessionData.pseudo !== user.pseudo ? (
+								<ButtonAddFriends
+									pseudo={user.pseudo}
+									sessionData={sessionUser.sessionData}
+									listFriends={listFriends}
+								/>
+							) : (
+								''
+							)}
 						</div>
 					</Popup>
 				</Marker>
