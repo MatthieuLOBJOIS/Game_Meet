@@ -40,6 +40,7 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 									(game: { name: string; studio: string; type: string; picture: string }) => {
 										return (
 											<img
+												key={game.name}
 												src={game.picture}
 												style={{ height: '50px', width: '50px' }}
 												alt={`logo du jeu: ${game.name}`}
