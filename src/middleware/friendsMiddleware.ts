@@ -13,9 +13,15 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 			if (!found) {
 				arrayFriends.push(action.pseudo);
 
-				return db.collection('users').doc(uid).update({
-					friends: arrayFriends
-				});
+				db
+					.collection('users')
+					.doc(uid)
+					.update({
+						friends: arrayFriends
+					})
+					.then(() => {
+						return store.dispatch(saveListFriends(arrayFriends));
+					});
 			}
 			return console.log('its a friend');
 		}
@@ -29,11 +35,17 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 					return name;
 				}
 			});
-			console.log(friends, uid, newListFriends);
+			//console.log(friends, uid, newListFriends);
 
-			return db.collection('users').doc(uid).update({
-				friends: newListFriends
-			});
+			db
+				.collection('users')
+				.doc(uid)
+				.update({
+					friends: newListFriends
+				})
+				.then(() => {
+					return store.dispatch(saveListFriends(newListFriends));
+				});
 		}
 
 		case GET_LIST_FRIENDS: {
