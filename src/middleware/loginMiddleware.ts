@@ -10,10 +10,17 @@ const loginMiddleware = (store: any) => (next: any) => (action: any) => {
 				.auth()
 				.signInWithEmailAndPassword(mail, password)
 				.then((response: any) => {
-					db.collection('users').doc(response.user.uid).get().then(function(querySnapshot) {
-						//console.log(querySnapshot.data(), 'success', response);
-						return store.dispatch(checkLogged(true, querySnapshot.data()));
-					});
+					const collection = db.collection('users').doc(response.user.uid);
+					collection
+						.update({
+							isLogged: true
+						})
+						.then(() => {
+							collection.get().then(function(querySnapshot) {
+								//console.log(querySnapshot.data(), 'success', response);
+								return store.dispatch(checkLogged(true, querySnapshot.data()));
+							});
+						});
 				})
 				.catch((err) => {
 					console.warn(err, 'error');
