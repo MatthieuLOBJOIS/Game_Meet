@@ -7,17 +7,9 @@ type Props = {
 	snapUsers: any;
 	data: Array<Object> | any;
 	listFriends: any;
-	getUrlPictureGames: any;
-	urlPictureGames: any;
 };
 
-const MapLeaflet: FunctionComponent<Props> = ({
-	snapUsers,
-	data,
-	listFriends,
-	getUrlPictureGames,
-	urlPictureGames
-}) => {
+const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) => {
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 

@@ -1,17 +1,25 @@
-import { SNAP_GAME, listGames, GET_URL_PICTURE_GAMES, saveUrlPictureGames } from '../actions/games';
+import { SNAP_GAME, listGames, GET_URL_PICTURE_GAMES, saveListChooseGames } from '../actions/games';
 import fire, { db } from '../config/fire';
 
 const gamesMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {
-		// case GET_URL_PICTURE_GAMES: {
-		// 	let urlPictureGames: any = [];
-		// 	const game = action.data;
-		// 	console.log(game);
-		// 	let storageRef = fire.storage().ref(game.picture);
-		// 	storageRef.getDownloadURL().then((url) => {
-		// 		return console.log(url, 'mafonction');
-		// 	});
-		// }
+		case GET_URL_PICTURE_GAMES: {
+			let listChooseGames: any = [];
+			const games = action.data;
+			const gamesState = store.getState().games.listGames;
+			gamesState.map((gameState: any) => {
+				games.map((game: any) => {
+					if (gameState.name === game) {
+						let storageRef = fire.storage().ref(gameState.picture);
+						storageRef.getDownloadURL().then((url) => {
+							gameState.picture = url;
+							listChooseGames.push(gameState);
+							return store.dispatch(saveListChooseGames(listChooseGames));
+						});
+					}
+				});
+			});
+		}
 		case SNAP_GAME: {
 			let games: any = [];
 			db.collection('games').get().then(function(querySnapshot) {

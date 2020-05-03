@@ -1,8 +1,8 @@
-import { LIST_GAMES, SAVE_URL_PICTURE_GAMES } from '../actions/games';
+import { LIST_GAMES, SAVE_LIST_CHOOSE_GAMES } from '../actions/games';
 
 const initialState = {
 	listGames: [],
-	urlPictureGames: ''
+	listChooseGames: []
 };
 
 const loginReducer = (state = initialState, action: any) => {
@@ -11,10 +11,8 @@ const loginReducer = (state = initialState, action: any) => {
 			//console.log(action.data, 'lol');
 			return { ...state, listGames: action.data };
 		}
-		case SAVE_URL_PICTURE_GAMES: {
-			//console.log(action.url[0], action.url[1]);
-
-			return { ...state, urlPictureGames: action.url };
+		case SAVE_LIST_CHOOSE_GAMES: {
+			return { ...state, listChooseGames: action.data };
 		}
 		default:
 			return state;

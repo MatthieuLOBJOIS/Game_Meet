@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import SelectField from '../../components/Fields/SelectField';
-import { getChooseGames } from '../../actions/games';
+import { getUrlPictureGames } from '../../actions/games';
 import { validateChangeField } from '../../actions/register';
 
 const mapStateToProps = (state: any) => ({
@@ -11,9 +11,10 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
 	changeGames: (games: any, identifier: string) => {
-		//dispatch(getChooseGames(games));
 		if (identifier !== undefined) {
 			dispatch(validateChangeField(games, identifier));
+			//console.log(games, 'selectcontainers');
+			dispatch(getUrlPictureGames(games));
 		}
 	}
 });

@@ -51,41 +51,33 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 			const city = !register.city.status;
 			const address = !register.address.status;
 			const games = !register.chooseGames.status;
-			const gamesState = store.getState().games.listGames;
-			const refGames: any = [];
-			gamesState.map((game: any) => {
-				register.chooseGames.value.map((aGame: any) => {
-					if (game.name === aGame) {
-						refGames.push(game);
+			const listChooseGames = store.getState().games.listChooseGames;
 
-						if (mail && password && confirmPassword && pseudo && city && address && games) {
-							fire
-								.auth()
-								.createUserWithEmailAndPassword(register.mail.value, register.password.value)
-								.then((resp: any) => {
-									db.collection('users').doc(resp.user.uid).set({
-										pseudo: register.pseudo.value,
-										isLogged: false,
-										city: register.city.value,
-										address: register.address.value,
-										location: register.location,
-										games: refGames,
-										friends: [],
-										uid: resp.user.uid
-									});
-								})
-								.then(() => {
-									return store.dispatch(signupSuccess());
-								})
-								.catch((err) => {
-									return store.dispatch(signupError(err));
-								});
-						} else {
-							return console.log('error register');
-						}
-					}
-				});
-			});
+			if (mail && password && confirmPassword && pseudo && city && address && games) {
+				fire
+					.auth()
+					.createUserWithEmailAndPassword(register.mail.value, register.password.value)
+					.then((resp: any) => {
+						db.collection('users').doc(resp.user.uid).set({
+							pseudo: register.pseudo.value,
+							isLogged: false,
+							city: register.city.value,
+							address: register.address.value,
+							location: register.location,
+							games: listChooseGames,
+							friends: [],
+							uid: resp.user.uid
+						});
+					})
+					.then(() => {
+						return store.dispatch(signupSuccess());
+					})
+					.catch((err) => {
+						return store.dispatch(signupError(err));
+					});
+			} else {
+				return console.log('error register');
+			}
 		}
 		default:
 			next(action);
