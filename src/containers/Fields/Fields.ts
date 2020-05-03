@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Fields from '../../components/Fields/Fields';
-import { changeField, userCoordinate, showPassword, showConfirmPassword } from '../../actions/user';
-import { validateChangeField } from '../../actions/register';
+import { validateChangeField, userCoordinate, showPassword, showConfirmPassword } from '../../actions/register';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
@@ -21,7 +20,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 		let newValue = event.target.value;
 		let identifier = event.target.id;
 		//console.log(newValue, identifier);
-		dispatch(changeField(newValue, identifier));
+		//dispatch(changeField(newValue, identifier));
 		dispatch(validateChangeField(newValue, identifier));
 	},
 	userCoordinate: () => {

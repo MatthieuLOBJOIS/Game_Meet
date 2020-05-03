@@ -1,7 +1,14 @@
-import { SAVE_USER, USER_COORDINATE, saveUserCoordinate } from '../actions/user';
 import fire, { db } from '../config/fire';
 import { validField } from '../services/validateField';
-import { VALIDATE_CHANGE_FIELD, validStatusField, signupSuccess, signupError } from '../actions/register';
+import {
+	VALIDATE_CHANGE_FIELD,
+	validStatusField,
+	signupSuccess,
+	signupError,
+	SAVE_USER,
+	USER_COORDINATE,
+	saveUserCoordinate
+} from '../actions/register';
 
 const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {

@@ -1,5 +1,13 @@
-import { VALID_STATUS_FIELD, SIGNUP_ERROR, SIGNUP_SUCCESS } from '../actions/register';
-import { SAVE_USER, SAVE_USER_COORDINATE, SHOW_PASSWORD, SHOW_CONFIRM_PASSWORD } from '../actions/user';
+import {
+	VALID_STATUS_FIELD,
+	SIGNUP_ERROR,
+	SIGNUP_SUCCESS,
+	SAVE_USER,
+	SAVE_USER_COORDINATE,
+	SHOW_PASSWORD,
+	SHOW_CONFIRM_PASSWORD
+} from '../actions/register';
+
 const initialMessage = 'veuillez remplir ce champ';
 const initialState = {
 	name: 'inscription',

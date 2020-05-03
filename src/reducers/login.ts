@@ -1,4 +1,4 @@
-import { CHECK_LOGGED } from '../actions/user';
+import { CHECK_LOGGED } from '../actions/login';
 
 const initialState = {
 	name: 'connexion',

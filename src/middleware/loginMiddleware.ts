@@ -1,4 +1,4 @@
-import { LOG_IN, checkLogged } from '../actions/user';
+import { LOG_IN, checkLogged } from '../actions/login';
 import fire, { db } from '../config/fire';
 
 const loginMiddleware = (store: any) => (next: any) => (action: any) => {
