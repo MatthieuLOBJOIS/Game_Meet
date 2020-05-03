@@ -11,8 +11,10 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
 	changeGames: (games: any, identifier: string) => {
-		dispatch(getChooseGames(games));
-		dispatch(validateChangeField(games, identifier));
+		//dispatch(getChooseGames(games));
+		if (identifier !== undefined) {
+			dispatch(validateChangeField(games, identifier));
+		}
 	}
 });
 

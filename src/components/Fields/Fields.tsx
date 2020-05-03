@@ -67,6 +67,7 @@ const Fields: FunctionComponent<Props> = ({
 	useEffect(
 		() => {
 			userCoordinate();
+			//console.log(city, address);
 		},
 		[ city, address ]
 	);

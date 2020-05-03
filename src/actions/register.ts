@@ -5,11 +5,12 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 
 //action creators
-export const validStatusField = (status: boolean, message: string, target: string) => ({
+export const validStatusField = (status: boolean, message: string, target: string, newValue: any) => ({
 	type: VALID_STATUS_FIELD,
 	status,
 	message,
-	target
+	target,
+	newValue
 });
 
 export const validateChangeField = (newValue: string, identifier: string) => ({

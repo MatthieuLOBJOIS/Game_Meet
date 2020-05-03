@@ -7,13 +7,19 @@ type Props = {
 	snapUsers: any;
 	data: Array<Object> | any;
 	listFriends: any;
+	getUrlPictureGames: any;
+	urlPictureGames: any;
 };
 
-const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) => {
+const MapLeaflet: FunctionComponent<Props> = ({
+	snapUsers,
+	data,
+	listFriends,
+	getUrlPictureGames,
+	urlPictureGames
+}) => {
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
-
-	//console.log(sessionUser.sessionData.friends, listFriends);
 
 	useEffect(() => {
 		snapUsers();
@@ -42,18 +48,18 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) 
 							<p>{user.city}</p>
 							<p>{user.address}</p>
 							<div>
-								{user.games.map(
-									(game: { name: string; studio: string; type: string; picture: string }) => {
-										return (
-											<img
-												key={game.name}
-												src={game.picture}
-												style={{ height: '50px', width: '50px' }}
-												alt={`logo du jeu: ${game.name}`}
-											/>
-										);
-									}
-								)}
+								{user.games.map((game: any, index: any) => {
+									//console.log(user.games);
+
+									return (
+										<img
+											key={index}
+											src={game.picture}
+											style={{ height: '50px', width: '50px' }}
+											alt={`logo du jeu: ${game.name}`}
+										/>
+									);
+								})}
 							</div>
 							{sessionLogin.isLogged === true && sessionUser.sessionData.pseudo !== user.pseudo ? (
 								<ButtonAddFriends

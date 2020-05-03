@@ -46,10 +46,8 @@ const App: FunctionComponent<Props> = ({
 		localStorage.setItem('isUser', JSON.stringify({ sessionData }));
 	}
 
-	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
-	//console.log(sessionUser.sessionData.friends, listFriends, '=>', listFriends);
-	//console.log(sessionLogin, sessionUser);
-	//console.log(listFriends, sessionData, '====>', sessionUser);
+	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+
 	return (
 		<div>
 			<Grid container>
