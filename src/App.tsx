@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { Grid } from '@material-ui/core';
 
 //Local imports
-
 //Components
 import Header from './containers/Header';
 import Footer from './components/Footer';
@@ -18,35 +17,18 @@ type Props = {
 	isLogged: boolean;
 	isRegister: boolean;
 	sessionData: any;
-	getListGames: any;
 	takeDataUser: any;
-	//listFriends: any;
-	//getListFriends: any;
 };
 
-const App: FunctionComponent<Props> = ({
-	login,
-	register,
-	isLogged,
-	isRegister,
-	sessionData,
-	getListGames,
-	takeDataUser
-	//listFriends,
-	//getListFriends
-}) => {
+const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, sessionData, takeDataUser }) => {
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	useEffect(() => {
 		sessionLogin.isLogged === true && takeDataUser(sessionLogin.uid);
-		getListGames();
-		//sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
 	}, []);
 
 	if (sessionLogin.isLogged === true && sessionData !== null) {
 		localStorage.setItem('isUser', JSON.stringify({ sessionData }));
 	}
-
-	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 
 	return (
 		<div>

@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ChatIcon from '@material-ui/icons/Chat';
 import { Link } from 'react-router-dom';
 
-//Local imports*
+//Local imports
 import BadgeAvatars from './BadgeAvatars';
 
 type Props = {
@@ -52,7 +52,7 @@ const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, get
 	return (
 		<List dense className={classes.root}>
 			{listFriends.map((value: any, index: any) => {
-				console.log(value, index);
+				//console.log(value, index);
 				const labelId = `checkbox-list-secondary-label-${value.pseudo}`;
 				return (
 					<div onClick={handleDisplayIconClick} id={`${value.pseudo}`}>
