@@ -66,7 +66,9 @@ const Fields: FunctionComponent<Props> = ({
 
 	useEffect(
 		() => {
-			userCoordinate();
+			if (city !== '' && address !== '') {
+				userCoordinate();
+			}
 			//console.log(city, address);
 		},
 		[ city, address ]

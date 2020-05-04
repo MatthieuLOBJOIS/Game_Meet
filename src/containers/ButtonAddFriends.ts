@@ -8,9 +8,9 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-	addNewFriends: (pseudo: string, sessionData: any, listFriends: any) => {
+	addNewFriends: (user: any, sessionData: any, listFriends: any) => {
 		return (): void => {
-			dispatch(addNewFriends(pseudo, sessionData, listFriends));
+			dispatch(addNewFriends(user, sessionData, listFriends));
 		};
 	}
 });

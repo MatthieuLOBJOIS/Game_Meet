@@ -1,5 +1,5 @@
 //Imports of dependencies
-import React, { useState, FunctionComponent, useEffect, useRef } from 'react';
+import React, { useState, FunctionComponent, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -7,14 +7,15 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { Link } from 'react-router-dom';
 
 //Local imports*
-import Avatar from './Avatar';
+import BadgeAvatars from './BadgeAvatars';
 
 type Props = {
 	listFriends: any;
 	deleteFriends: any;
+	getListFriends: any;
 };
 
-const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends }) => {
+const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, getListFriends }) => {
 	const [ display, setDisplay ] = useState({ status: 'none', value: '' });
 	const [ listColor, setListColor ] = useState({ background: '#161c2e', color: 'white' });
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
@@ -38,6 +39,10 @@ const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends }) =
 
 	const classes = useStyles();
 
+	useEffect(() => {
+		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
+	}, []);
+
 	const handleDisplayIconClick = (event: any) => {
 		//console.log(event.currentTarget.id);
 		setDisplay({ ...display, status: 'bloc', value: event.currentTarget.id });
@@ -47,25 +52,28 @@ const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends }) =
 	return (
 		<List dense className={classes.root}>
 			{listFriends.map((value: any, index: any) => {
-				//console.log(value, index);
-				const labelId = `checkbox-list-secondary-label-${value}`;
+				console.log(value, index);
+				const labelId = `checkbox-list-secondary-label-${value.pseudo}`;
 				return (
-					<div onClick={handleDisplayIconClick} id={`${value}`}>
-						<ListItem className={`${value}` === display.value ? classes.listBackground : ''} key={value}>
+					<div onClick={handleDisplayIconClick} id={`${value.pseudo}`}>
+						<ListItem
+							className={`${value.pseudo}` === display.value ? classes.listBackground : ''}
+							key={value.pseudo}
+						>
 							<ListItemAvatar>
-								<Avatar />
+								<BadgeAvatars isLogged={value.isLogged} />
 							</ListItemAvatar>
-							<ListItemText id={labelId} primary={`${value}`} />
-							{`${value}` === display.value ? (
-								<Link to={`/chatroom/${value}`}>
+							<ListItemText id={labelId} primary={`${value.pseudo}`} />
+							{`${value.pseudo}` === display.value ? (
+								<Link to={`/chatroom/${value.pseudo}`}>
 									<ChatIcon className={classes.iconColor} />
 								</Link>
 							) : (
 								''
 							)}
-							{`${value}` === display.value ? (
+							{`${value.pseudo}` === display.value ? (
 								<CloseIcon
-									onClick={deleteFriends(value, sessionLogin.uid, listFriends)}
+									onClick={deleteFriends(value.pseudo, sessionLogin.uid, listFriends)}
 									className={classes.iconColor}
 								/>
 							) : (

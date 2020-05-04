@@ -6,7 +6,7 @@ import { themeButton } from '../services/createTheme';
 
 type Props = {
 	addNewFriends: any;
-	pseudo: string;
+	user: any;
 	sessionData: any;
 	listFriends: any;
 };
@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const ButtonAddFriends: FunctionComponent<Props> = ({ addNewFriends, pseudo, sessionData, listFriends }) => {
+const ButtonAddFriends: FunctionComponent<Props> = ({ addNewFriends, user, sessionData, listFriends }) => {
 	//console.log(sessionData.friends, pseudo);
 	const classes = useStyles();
 	return (
 		<div>
 			<ThemeProvider theme={themeButton}>
 				<Button
-					onClick={addNewFriends(pseudo, sessionData, listFriends)}
+					onClick={addNewFriends(user, sessionData, listFriends)}
 					type="submit"
 					variant="contained"
 					color="primary"

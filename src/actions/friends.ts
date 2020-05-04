@@ -5,9 +5,9 @@ export const GET_LIST_FRIENDS = 'GET_LIST_FRIENDS';
 export const DELETE_FRIENDS = 'DELETE_FRIENDS';
 
 //action creators
-export const addNewFriends = (pseudo: string, sessionData: any, listFriends: any) => ({
+export const addNewFriends = (user: any, sessionData: any, listFriends: any) => ({
 	type: ADD_NEW_FRIENDS,
-	pseudo,
+	user,
 	sessionData,
 	listFriends
 });

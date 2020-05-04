@@ -61,7 +61,7 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 		case USER_COORDINATE: {
 			let city = store.getState().register.city.value;
 			let address = store.getState().register.address.value;
-			console.log(city, address);
+			//console.log(city, address);
 			const getLocalization = async (city: any, address: any) => {
 				const objectLocation = {
 					location: `${city}, ${address}`,

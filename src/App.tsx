@@ -20,8 +20,8 @@ type Props = {
 	sessionData: any;
 	getListGames: any;
 	takeDataUser: any;
-	listFriends: any;
-	getListFriends: any;
+	//listFriends: any;
+	//getListFriends: any;
 };
 
 const App: FunctionComponent<Props> = ({
@@ -31,15 +31,15 @@ const App: FunctionComponent<Props> = ({
 	isRegister,
 	sessionData,
 	getListGames,
-	takeDataUser,
-	listFriends,
-	getListFriends
+	takeDataUser
+	//listFriends,
+	//getListFriends
 }) => {
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	useEffect(() => {
 		sessionLogin.isLogged === true && takeDataUser(sessionLogin.uid);
 		getListGames();
-		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
+		//sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
 	}, []);
 
 	if (sessionLogin.isLogged === true && sessionData !== null) {

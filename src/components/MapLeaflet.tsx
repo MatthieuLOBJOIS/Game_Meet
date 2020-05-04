@@ -41,8 +41,6 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) 
 							<p>{user.address}</p>
 							<div>
 								{user.games.map((game: any, index: any) => {
-									//console.log(user.games);
-
 									return (
 										<img
 											key={index}
@@ -55,7 +53,7 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) 
 							</div>
 							{sessionLogin.isLogged === true && sessionUser.sessionData.pseudo !== user.pseudo ? (
 								<ButtonAddFriends
-									pseudo={user.pseudo}
+									user={user}
 									sessionData={sessionUser.sessionData}
 									listFriends={listFriends}
 								/>
