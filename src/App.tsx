@@ -9,7 +9,7 @@ import Header from './containers/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ErrorNotFound from './pages/ErrorNotFound';
-import ChatRoom from './pages/ChatRoom';
+import ChatRoom from './containers/ChatRoom';
 
 type Props = {
 	login: String;
@@ -37,7 +37,7 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, 
 					<Header />
 					<Switch>
 						<Route exact path={[ '/', `/${login}`, `/${register}` ]} component={Home} />
-						<Route exact path={'/chatroom'} component={ChatRoom} />
+						<Route exact path={'/chatroom/:id'} component={ChatRoom} />
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />

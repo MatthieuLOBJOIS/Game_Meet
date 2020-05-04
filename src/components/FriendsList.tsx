@@ -65,7 +65,7 @@ const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, get
 							</ListItemAvatar>
 							<ListItemText id={labelId} primary={`${value.pseudo}`} />
 							{`${value.pseudo}` === display.value ? (
-								<Link to={`/chatroom/${value.pseudo}`}>
+								<Link to={`/chatroom/${value.pseudo}?sort=chat`}>
 									<ChatIcon className={classes.iconColor} />
 								</Link>
 							) : (

@@ -6,6 +6,7 @@ import gamesMiddleware from '../middleware/gamesMiddleware';
 import friendsMiddleware from '../middleware/friendsMiddleware';
 import loginMiddleware from '../middleware/loginMiddleware';
 import registerMiddleware from '../middleware/registerMiddleware';
+import messagesMiddleware from '../middleware/messagesMiddleware';
 import reducer from '../reducers';
 
 const enhancers = composeWithDevTools(
@@ -14,7 +15,8 @@ const enhancers = composeWithDevTools(
 		gamesMiddleware,
 		friendsMiddleware,
 		loginMiddleware,
-		registerMiddleware
+		registerMiddleware,
+		messagesMiddleware
 		// ... others middlewares
 	)
 );

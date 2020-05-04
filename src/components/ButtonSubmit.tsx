@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme: Theme) =>
 const ButtonSubmit: FunctionComponent = () => {
 	const classes = useStyles();
 	let location = useLocation();
-
+	//console.log(location);
 	return (
 		<div>
 			<ThemeProvider theme={themeButton}>
 				<Button type="submit" variant="contained" color="primary" className={classes.margin}>
-					{location.pathname.slice(1)}
+					{location.search === '?sort=chat' ? 'Envoyer' : location.pathname.slice(1)}
 				</Button>
 			</ThemeProvider>
 		</div>
