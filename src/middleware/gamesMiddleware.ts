@@ -22,14 +22,14 @@ const gamesMiddleware = (store: any) => (next: any) => (action: any) => {
 		}
 		case SNAP_GAME: {
 			let games: any = [];
-			db.collection('games').get().then(function(querySnapshot) {
+			return db.collection('games').get().then(function(querySnapshot) {
 				querySnapshot.forEach(function(doc) {
 					// doc.data() is never undefined for query doc snapshots
 					//console.log(doc.id, ' => ', doc.data().picture);
 					games.push(doc.data());
 				});
 				//console.log(games, 'array');
-				return store.dispatch(listGames(games));
+				store.dispatch(listGames(games));
 			});
 		}
 

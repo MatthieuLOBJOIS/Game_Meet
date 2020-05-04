@@ -1,4 +1,4 @@
-import { LOG_IN, checkLogged } from '../actions/login';
+import { LOG_IN, LOG_OUT, checkLogged } from '../actions/login';
 import fire, { db } from '../config/fire';
 
 const loginMiddleware = (store: any) => (next: any) => (action: any) => {
@@ -6,7 +6,7 @@ const loginMiddleware = (store: any) => (next: any) => (action: any) => {
 		case LOG_IN: {
 			let mail = store.getState().register.mail.value;
 			let password = store.getState().register.password.value;
-			fire
+			return fire
 				.auth()
 				.signInWithEmailAndPassword(mail, password)
 				.then((response: any) => {
@@ -18,13 +18,25 @@ const loginMiddleware = (store: any) => (next: any) => (action: any) => {
 						.then(() => {
 							collection.get().then(function(querySnapshot) {
 								//console.log(querySnapshot.data(), 'success', response);
-								return store.dispatch(checkLogged(true, querySnapshot.data()));
+								store.dispatch(checkLogged(true, querySnapshot.data()));
 							});
 						});
 				})
 				.catch((err) => {
 					console.warn(err, 'error');
-					return store.dispatch(checkLogged(false));
+					store.dispatch(checkLogged(false));
+				});
+		}
+		case LOG_OUT: {
+			const uid = action.uid;
+			return db
+				.collection('users')
+				.doc(uid)
+				.update({
+					isLogged: false
+				})
+				.then(() => {
+					store.dispatch(checkLogged(null));
 				});
 		}
 		default:

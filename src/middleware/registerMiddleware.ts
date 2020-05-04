@@ -21,34 +21,6 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 			return store.dispatch(validStatusField(status === false ? true : false, message, target, newValue));
 		}
 
-		case USER_COORDINATE: {
-			let city = store.getState().register.city.value;
-			let address = store.getState().register.address.value;
-			const getLocalization = async (city: any, address: any) => {
-				const objectLocation = {
-					location: `${city}, ${address}`,
-					options: {
-						thumbMaps: false
-					}
-				};
-				const options = {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(objectLocation)
-				};
-
-				let response = await fetch(
-					'http://www.mapquestapi.com/geocoding/v1/address?key=aX1uiXkdfaK7FbmaUiUjxrWgTf903Kz5',
-					options
-				);
-				let data = await response.json();
-
-				let location = data.results[0].locations[0].latLng;
-				store.dispatch(saveUserCoordinate(location));
-			};
-			return getLocalization(city, address);
-		}
-
 		case SAVE_USER: {
 			const register = store.getState().register;
 			const mail = !register.mail.status;
@@ -85,6 +57,34 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 			} else {
 				return console.log('error register');
 			}
+		}
+		case USER_COORDINATE: {
+			let city = store.getState().register.city.value;
+			let address = store.getState().register.address.value;
+			console.log(city, address);
+			const getLocalization = async (city: any, address: any) => {
+				const objectLocation = {
+					location: `${city}, ${address}`,
+					options: {
+						thumbMaps: false
+					}
+				};
+				const options = {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(objectLocation)
+				};
+
+				let response = await fetch(
+					'http://www.mapquestapi.com/geocoding/v1/address?key=aX1uiXkdfaK7FbmaUiUjxrWgTf903Kz5',
+					options
+				);
+				let data = await response.json();
+				console.log(data);
+				let location = data.results[0].locations[0].latLng;
+				store.dispatch(saveUserCoordinate(location));
+			};
+			return getLocalization(city, address);
 		}
 		default:
 			next(action);

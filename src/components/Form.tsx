@@ -39,7 +39,7 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser 
 	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	sessionLogin.isLogged === true && history.push('/');
-	sessionLogin.isLogged === true && window.location.reload();
+	//sessionLogin.isLogged === true && window.location.reload();
 	return (
 		<form
 			onSubmit={handleSubmit(location.pathname.slice(1), login, register)}

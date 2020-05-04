@@ -8,11 +8,12 @@ export const logIn = () => ({
 	type: LOG_IN
 });
 
-export const logOut = () => ({
-	type: LOG_OUT
+export const logOut = (uid: any) => ({
+	type: LOG_OUT,
+	uid
 });
 
-export const checkLogged = (response: boolean, dataUser: any = {}) => ({
+export const checkLogged = (response: any, dataUser: any = {}) => ({
 	type: CHECK_LOGGED,
 	response,
 	data: dataUser

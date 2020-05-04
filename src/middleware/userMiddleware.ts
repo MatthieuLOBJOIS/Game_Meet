@@ -6,20 +6,20 @@ const userMiddleware = (store: any) => (next: any) => (action: any) => {
 		case TAKE_DATA_USER: {
 			const uid = action.uid;
 			if (uid !== undefined) {
-				db.collection('users').doc(uid).get().then(function(querySnapshot) {
-					return store.dispatch(actualizeDataUser(querySnapshot.data()));
+				return db.collection('users').doc(uid).get().then(function(querySnapshot) {
+					store.dispatch(actualizeDataUser(querySnapshot.data()));
 				});
 			}
 		}
 
 		case SNAP_USERS: {
 			let dataUsers: any = [];
-			db.collection('users').get().then(function(querySnapshot) {
+			return db.collection('users').get().then(function(querySnapshot) {
 				querySnapshot.forEach(function(doc) {
 					dataUsers.push(doc.data());
 				});
 
-				return store.dispatch(listDataUsers(dataUsers));
+				store.dispatch(listDataUsers(dataUsers));
 			});
 		}
 

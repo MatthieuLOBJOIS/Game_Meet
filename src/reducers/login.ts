@@ -9,7 +9,11 @@ const initialState = {
 const loginReducer = (state = initialState, action: any) => {
 	switch (action.type) {
 		case CHECK_LOGGED: {
-			localStorage.setItem('isLogged', JSON.stringify({ isLogged: action.response, uid: action.data.uid }));
+			window.location.reload();
+			if (action.response === true) {
+				localStorage.setItem('isLogged', JSON.stringify({ isLogged: action.response, uid: action.data.uid }));
+			}
+
 			return {
 				...state,
 

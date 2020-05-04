@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { Route } from 'react-router-dom';
 
 //Local imports
-import Menu from './Menu';
+import Menu from '../containers/Menu';
 import ModalForm from '../containers/ModalForm';
 
 type Props = {
