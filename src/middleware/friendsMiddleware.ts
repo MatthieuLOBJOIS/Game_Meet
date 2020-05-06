@@ -1,4 +1,11 @@
-import { ADD_NEW_FRIENDS, saveListFriends, GET_LIST_FRIENDS, DELETE_FRIENDS } from '../actions/friends';
+import {
+	ADD_NEW_FRIENDS,
+	saveListFriends,
+	GET_LIST_FRIENDS,
+	DELETE_FRIENDS,
+	GET_ONE_FRIENDS,
+	saveOneFriends
+} from '../actions/friends';
 import fire, { db } from '../config/fire';
 
 const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
@@ -59,7 +66,7 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 			const uid = action.uid;
 			const NewFriendsArray: any = [];
 			//console.log(uid);
-			db.collection('users').doc(uid).get().then(function(querySnapshot: any) {
+			return db.collection('users').doc(uid).get().then(function(querySnapshot: any) {
 				//console.log(querySnapshot.data().friends);
 				const friendsArray = querySnapshot.data().friends;
 
@@ -75,6 +82,17 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 					}
 				});
 			});
+		}
+
+		case GET_ONE_FRIENDS: {
+			const friendsValue = action.value;
+			let myFriends = '';
+			const listFriends = action.listFriends;
+			if (listFriends.some((friends: any) => friends.uid === friendsValue.uid)) {
+				myFriends = friendsValue;
+				//console.log(myFriends)
+				return store.dispatch(saveOneFriends(myFriends, listFriends));
+			}
 		}
 
 		default:

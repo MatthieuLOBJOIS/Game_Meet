@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import FriendsList from '../components/FriendsList';
-import { deleteFriends, getListFriends } from '../actions/friends';
+import { deleteFriends, getListFriends, getOneFriends } from '../actions/friends';
 
 const mapStateToProps = (state: any) => ({
 	user: state.user,
@@ -16,6 +16,11 @@ const mapDispatchToProps = (dispatch: any) => ({
 	},
 	getListFriends: (sessionData: any) => {
 		dispatch(getListFriends(sessionData));
+	},
+	getOneFriends: (value: any, listFriends: any) => {
+		return () => {
+			dispatch(getOneFriends(value, listFriends));
+		};
 	}
 });
 

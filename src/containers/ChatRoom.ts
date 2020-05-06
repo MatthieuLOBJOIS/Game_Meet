@@ -1,15 +1,28 @@
 import { connect } from 'react-redux';
 
 import ChatRoom from '../pages/ChatRoom';
-import { getListFriends } from '../actions/friends';
+import { getOneFriends } from '../actions/friends';
+import { sendMessage, displayMessages } from '../actions/messages';
 
 const mapStateToProps = (state: any) => ({
-	listFriends: state.friends.listFriends
+	talk: state.messages.talk,
+	myFriends: state.friends.myFriends
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-	getListFriends: (sessionData: any) => {
-		dispatch(getListFriends(sessionData));
+	sendMessage: (sessionData: any, friends: any) => {
+		return (event: any) => {
+			event.preventDefault();
+			dispatch(sendMessage(sessionData, friends));
+		};
+	},
+	displayMessages: (sessionData: any, friends: any) => {
+		return dispatch(displayMessages(sessionData, friends));
+	},
+	getOneFriends: (value: any, listFriends: any) => {
+		return () => {
+			dispatch(getOneFriends(value, listFriends));
+		};
 	}
 });
 

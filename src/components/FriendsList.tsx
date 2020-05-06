@@ -13,9 +13,10 @@ type Props = {
 	listFriends: any;
 	deleteFriends: any;
 	getListFriends: any;
+	getOneFriends: any;
 };
 
-const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, getListFriends }) => {
+const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, getListFriends, getOneFriends }) => {
 	const [ display, setDisplay ] = useState({ status: 'none', value: '' });
 	const [ listColor, setListColor ] = useState({ background: '#161c2e', color: 'white' });
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
@@ -65,7 +66,10 @@ const FriendsList: FunctionComponent<Props> = ({ listFriends, deleteFriends, get
 							</ListItemAvatar>
 							<ListItemText id={labelId} primary={`${value.pseudo}`} />
 							{`${value.pseudo}` === display.value ? (
-								<Link to={`/chatroom/${value.pseudo}?sort=chat`}>
+								<Link
+									to={`/chatroom/${value.pseudo}?sort=chat`}
+									onClick={getOneFriends(value, listFriends)}
+								>
 									<ChatIcon className={classes.iconColor} />
 								</Link>
 							) : (
