@@ -81,7 +81,8 @@ const Menu: FunctionComponent<Props> = ({ logOut }) => {
 					<Button
 						onClick={() => {
 							logOut(sessionLogin.uid);
-							localStorage.clear();
+							localStorage.removeItem('isUser');
+							localStorage.removeItem('isLogged');
 						}}
 						color="secondary"
 					>

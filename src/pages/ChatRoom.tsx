@@ -1,63 +1,74 @@
 //Imports of dependencies
 import React, { FunctionComponent, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import BadgeAvatars from '../components/BadgeAvatars';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import ChatField from '../components/Fields/ChatField';
+import ChatField from '../containers/Fields/ChatField';
 import ButtonSubmit from '../components/ButtonSubmit';
 
 type Props = {
-	listFriends: any;
-	getListFriends: any;
+	sendMessage: any;
+	displayMessages: any;
+	talk: any;
+	myFriends: any;
+	getOneFriends: any;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		typo: {
 			color: '#161c2e'
+		},
+		message: {
+			color: 'red',
+			textAlign: 'end'
 		}
 	})
 );
 
-const ChatRoom: FunctionComponent<Props> = ({ listFriends, getListFriends }) => {
-	const param: any = useParams();
+const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk, myFriends, getOneFriends }) => {
 	const classes = useStyles();
+
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
-	useEffect(() => {
-		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
-	}, []);
+	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+
+	let sessionFriends = JSON.parse(localStorage.getItem('friends') || '{}');
+
+	useEffect(getOneFriends(sessionFriends.myFriends, sessionFriends.listFriends), []);
+
+	useEffect(
+		() => {
+			if (myFriends !== null) {
+				sessionLogin.isLogged === true && displayMessages(sessionUser.sessionData, myFriends);
+			}
+		},
+		[ myFriends ]
+	);
 
 	return (
 		<Grid item style={{ height: '100vh' }} xs={12}>
-			{listFriends.map((friends: any) => {
-				if (friends.pseudo === param.id) {
-					//console.log(friends, param.id);
-					return (
-						<div>
-							<Typography
-								style={{ textAlign: 'center' }}
-								className={classes.typo}
-								variant="h4"
-								component="h1"
-							>
-								{friends.pseudo} chatRoom
-							</Typography>
-							<div style={{ height: '80vh' }}>
-								<p>Bonjour</p>
-								<p>Ca va ?</p>
-								<p>oui et toi ?</p>
-								<p>ça va</p>
-							</div>
-							<div>
-								<ChatField label={friends.pseudo} />
-								<ButtonSubmit />
-							</div>
-						</div>
-					);
-				}
-			})}
+			{sessionLogin.isLogged === true &&
+			myFriends !== null && (
+				<div>
+					<Typography style={{ textAlign: 'center' }} className={classes.typo} variant="h4" component="h1">
+						{myFriends.pseudo} chatRoom
+					</Typography>
+					<div style={{ height: '80vh' }}>
+						{talk.map((message: any) => {
+							return (
+								<p className={myFriends.pseudo === message.pseudo ? classes.message : ''}>
+									{message.message}
+								</p>
+							);
+						})}
+					</div>
+					<form onSubmit={sendMessage(sessionUser.sessionData, myFriends)}>
+						<ChatField label={myFriends.pseudo} />
+						<ButtonSubmit />
+					</form>
+				</div>
+			)}
 		</Grid>
 	);
 };
