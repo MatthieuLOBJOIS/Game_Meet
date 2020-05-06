@@ -12,6 +12,7 @@ type Props = {
 	games: any;
 	id: string;
 	changeGames: any;
+	getListGames: any;
 	error: boolean;
 	message: string;
 };
@@ -36,11 +37,16 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, error, message }) => {
+const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, getListGames, error, message }) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [ gameName, setGameName ] = React.useState<string[]>([]);
 	const [ objectGames, setObjectGames ] = React.useState({});
+
+	useEffect(() => {
+		getListGames();
+	}, []);
+
 	useEffect(
 		() => {
 			const identifier = Object.values(objectGames)[1];

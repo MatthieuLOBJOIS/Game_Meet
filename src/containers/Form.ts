@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import Form from '../components/Form';
-import { logIn, saveUser } from '../actions/user';
-
+import { saveUser } from '../actions/register';
+import { logIn } from '../actions/login';
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
 	register: state.register.name,

@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 
 import App from '../App';
-import { snapGame } from '../actions/games';
+import { takeDataUser } from '../actions/user';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
 	register: state.register.name,
-	isLogged: state.user.isLogged,
-	sessionData: state.user.sessionData,
+	isLogged: state.login.isLogged,
+	sessionData: state.login.sessionData,
 	isRegister: state.register.isRegister
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-	getListGames: () => {
-		dispatch(snapGame());
+	takeDataUser: (uid: string): void => {
+		dispatch(takeDataUser(uid));
 	}
 });
 

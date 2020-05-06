@@ -1,14 +1,18 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../style/index.css';
+import ButtonAddFriends from '../containers/ButtonAddFriends';
 
 type Props = {
 	snapUsers: any;
-	data: Array<Object>;
+	data: Array<Object> | any;
+	listFriends: any;
 };
 
-const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
+const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) => {
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
+
 	useEffect(() => {
 		snapUsers();
 	}, []);
@@ -16,7 +20,7 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 	return (
 		<Map
 			center={
-				sessionUser.isLogged !== true ? (
+				sessionLogin.isLogged !== true ? (
 					[ 45.4, -75.7 ]
 				) : (
 					[ sessionUser.sessionData.location.lat, sessionUser.sessionData.location.lng ]
@@ -36,18 +40,26 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 							<p>{user.city}</p>
 							<p>{user.address}</p>
 							<div>
-								{user.games.map(
-									(game: { name: string; studio: string; type: string; picture: string }) => {
-										return (
-											<img
-												src={game.picture}
-												style={{ height: '50px', width: '50px' }}
-												alt={`logo du jeu: ${game.name}`}
-											/>
-										);
-									}
-								)}
+								{user.games.map((game: any, index: any) => {
+									return (
+										<img
+											key={index}
+											src={game.picture}
+											style={{ height: '50px', width: '50px' }}
+											alt={`logo du jeu: ${game.name}`}
+										/>
+									);
+								})}
 							</div>
+							{sessionLogin.isLogged === true && sessionUser.sessionData.pseudo !== user.pseudo ? (
+								<ButtonAddFriends
+									user={user}
+									sessionData={sessionUser.sessionData}
+									listFriends={listFriends}
+								/>
+							) : (
+								''
+							)}
 						</div>
 					</Popup>
 				</Marker>

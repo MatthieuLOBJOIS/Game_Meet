@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { Grid } from '@material-ui/core';
 
 //Local imports
-
 //Components
 import Header from './containers/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import ErrorNotFound from './pages/ErrorNotFound';
+import ChatRoom from './containers/ChatRoom';
 
 type Props = {
 	login: String;
@@ -17,19 +17,19 @@ type Props = {
 	isLogged: boolean;
 	isRegister: boolean;
 	sessionData: any;
-	getListGames: any;
+	takeDataUser: any;
 };
 
-const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, sessionData, getListGames }) => {
+const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, sessionData, takeDataUser }) => {
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	useEffect(() => {
-		getListGames();
+		sessionLogin.isLogged === true && takeDataUser(sessionLogin.uid);
 	}, []);
-	if (isLogged === true) {
-		localStorage.setItem('isUser', JSON.stringify({ isLogged, sessionData }));
+
+	if (sessionLogin.isLogged === true && sessionData !== null) {
+		localStorage.setItem('isUser', JSON.stringify({ sessionData }));
 	}
 
-	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
-	//console.log(sessionUser);
 	return (
 		<div>
 			<Grid container>
@@ -37,10 +37,11 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, 
 					<Header />
 					<Switch>
 						<Route exact path={[ '/', `/${login}`, `/${register}` ]} component={Home} />
+						<Route exact path={'/chatroom/:id'} component={ChatRoom} />
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
-					{sessionUser.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
+					{sessionLogin.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
 					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />};
 				</Router>
 			</Grid>

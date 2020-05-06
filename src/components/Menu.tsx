@@ -1,5 +1,5 @@
 //Imports of dependencies
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Drawer, Button } from '@material-ui/core';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
@@ -7,8 +7,15 @@ import Typography from '@material-ui/core/Typography';
 
 //Local imports*
 import Logo from '../assets/logo.png';
-import FriendsList from './FriendsList';
+import FriendsList from '../containers/FriendsList';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
+
+type Props = {
+	logOut: any;
+};
+
+type Anchor = 'left';
 
 const useStyles = makeStyles({
 	menu: {
@@ -31,13 +38,13 @@ const useStyles = makeStyles({
 	}
 });
 
-type Anchor = 'left';
-
-const Menu = () => {
+const Menu: FunctionComponent<Props> = ({ logOut }) => {
 	const classes = useStyles();
 	const [ state, setState ] = React.useState({
 		left: false
 	});
+
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 
 	const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
 		if (
@@ -63,7 +70,9 @@ const Menu = () => {
 					open={state[anchor]}
 					onClose={toggleDrawer(anchor, false)}
 				>
-					<img className={classes.logo} src={Logo} />
+					<Link to="/">
+						<img className={classes.logo} src={Logo} />
+					</Link>
 					<SearchBar />
 					<Typography className={classes.typo} variant="h6" component="h2">
 						Messages privés
@@ -71,8 +80,9 @@ const Menu = () => {
 					<FriendsList />
 					<Button
 						onClick={() => {
-							window.location.reload();
-							localStorage.clear();
+							logOut(sessionLogin.uid);
+							localStorage.removeItem('isUser');
+							localStorage.removeItem('isLogged');
 						}}
 						color="secondary"
 					>

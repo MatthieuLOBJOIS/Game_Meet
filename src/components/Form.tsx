@@ -36,9 +36,10 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser 
 	let location = useLocation();
 	let history = useHistory();
 
-	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
-	sessionUser.isLogged === true && history.push('/');
-	sessionUser.isLogged === true && window.location.reload();
+	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
+	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
+	sessionLogin.isLogged === true && history.push('/');
+	//sessionLogin.isLogged === true && window.location.reload();
 	return (
 		<form
 			onSubmit={handleSubmit(location.pathname.slice(1), login, register)}
@@ -51,7 +52,7 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser 
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
-			{sessionUser.isLogged === false &&
+			{sessionLogin.isLogged === false &&
 			location.pathname === `/${login}` && (
 				<Alert variant="outlined" severity="error">
 					Alert — Vos donnée saisies sont incorrect veuillez ressayer !

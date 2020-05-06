@@ -3,6 +3,7 @@ import React, { FunctionComponent } from 'react';
 import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useLocation } from 'react-router-dom';
+import { themeButton } from '../services/createTheme';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -12,23 +13,15 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const theme = createMuiTheme({
-	palette: {
-		primary: {
-			main: '#ef6c35'
-		}
-	}
-});
-
 const ButtonSubmit: FunctionComponent = () => {
 	const classes = useStyles();
 	let location = useLocation();
-
+	//console.log(location);
 	return (
 		<div>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={themeButton}>
 				<Button type="submit" variant="contained" color="primary" className={classes.margin}>
-					{location.pathname.slice(1)}
+					{location.search === '?sort=chat' ? 'Envoyer' : location.pathname.slice(1)}
 				</Button>
 			</ThemeProvider>
 		</div>
