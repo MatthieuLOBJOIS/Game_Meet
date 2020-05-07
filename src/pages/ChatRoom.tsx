@@ -15,17 +15,45 @@ type Props = {
 	getOneFriends: any;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
+const useStyles = makeStyles((theme: Theme) => {
+	const colorMessage = 'white';
+	const paddingMessage = '1em';
+	const widthMessage = '50%';
+	const overflowWrapMessage = 'break-word';
+	return createStyles({
 		typo: {
-			color: '#161c2e'
+			color: '#161c2e',
+			position: 'fixed',
+			right: 'calc(50% - 5em)',
+			textAlign: 'center'
 		},
-		message: {
-			color: 'red',
-			textAlign: 'end'
+		messagesContainer: {
+			height: '70vh',
+			padding: '6em 3em 3em ',
+			display: 'flex',
+			flexDirection: 'column',
+			overflow: 'auto'
+		},
+		messageUser: {
+			color: colorMessage,
+			backgroundColor: '#161c2e',
+			padding: paddingMessage,
+			borderRadius: '2em 1em 1em 0',
+			width: widthMessage,
+			overflowWrap: overflowWrapMessage
+		},
+		messageFriends: {
+			color: colorMessage,
+			textAlign: 'end',
+			backgroundColor: '#ef6c35',
+			padding: paddingMessage,
+			borderRadius: '1em 2em 0 1em ',
+			width: widthMessage,
+			overflowWrap: overflowWrapMessage,
+			alignSelf: 'flex-end'
 		}
-	})
-);
+	});
+});
 
 const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk, myFriends, getOneFriends }) => {
 	const classes = useStyles();
@@ -51,13 +79,22 @@ const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk
 			{sessionLogin.isLogged === true &&
 			myFriends !== null && (
 				<div>
-					<Typography style={{ textAlign: 'center' }} className={classes.typo} variant="h4" component="h1">
+					<Typography className={classes.typo} variant="h4" component="h1">
 						{myFriends.pseudo} chatRoom
 					</Typography>
-					<div style={{ height: '80vh' }}>
-						{talk.map((message: any) => {
+					<div className={classes.messagesContainer}>
+						{talk.map((message: any, index: number) => {
 							return (
-								<p className={myFriends.pseudo === message.pseudo ? classes.message : ''}>
+								<p
+									key={index}
+									className={
+										myFriends.pseudo === message.pseudo ? (
+											classes.messageFriends
+										) : (
+											classes.messageUser
+										)
+									}
+								>
 									{message.message}
 								</p>
 							);
