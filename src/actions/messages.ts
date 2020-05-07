@@ -5,6 +5,7 @@ export const CHANGE_MESSAGE = 'CHANGE_MESSAGE';
 export const DISPLAY_MESSAGES = 'DISPLAY_MESSAGE';
 export const SAVE_MESSAGES = 'SAVE_MESSAGES';
 export const GROUP_CHAT_ID = 'GROUP_CHAT_ID';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
 //action creators
 export const sendMessage = (sessionData: any, friends: any) => ({
@@ -36,4 +37,8 @@ export const saveMessages = (messages: any) => ({
 export const groupChatId = (groupChatId: any) => ({
 	type: GROUP_CHAT_ID,
 	groupChatId
+});
+
+export const deleteMessage = () => ({
+	type: DELETE_MESSAGE
 });

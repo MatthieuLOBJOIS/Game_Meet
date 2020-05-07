@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import ChatRoom from '../pages/ChatRoom';
 import { getOneFriends } from '../actions/friends';
-import { sendMessage, displayMessages } from '../actions/messages';
+import { sendMessage, displayMessages, deleteMessage } from '../actions/messages';
 
 const mapStateToProps = (state: any) => ({
 	talk: state.messages.talk,
