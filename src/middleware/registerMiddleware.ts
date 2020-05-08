@@ -80,7 +80,6 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 					options
 				);
 				let data = await response.json();
-				console.log(data);
 				let location = data.results[0].locations[0].latLng;
 				store.dispatch(saveUserCoordinate(location));
 			};
