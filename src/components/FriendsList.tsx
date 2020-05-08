@@ -35,7 +35,8 @@ const FriendsList: FunctionComponent<Props> = ({
 			root: {
 				width: '100%',
 				maxWidth: 360,
-				color: 'white'
+				color: 'white',
+				overflow: 'auto'
 			},
 			listBackground: {
 				backgroundColor: listColor.background,
