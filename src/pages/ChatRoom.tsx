@@ -6,6 +6,7 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChatField from '../containers/Fields/ChatField';
 import ButtonSubmit from '../components/ButtonSubmit';
+import ContainerMessages from '../components/ContainerMessages';
 
 type Props = {
 	sendMessage: any;
@@ -16,41 +17,12 @@ type Props = {
 };
 
 const useStyles = makeStyles((theme: Theme) => {
-	const colorMessage = 'white';
-	const paddingMessage = '1em';
-	const widthMessage = '50%';
-	const overflowWrapMessage = 'break-word';
 	return createStyles({
 		typo: {
 			color: '#161c2e',
 			position: 'fixed',
 			right: 'calc(50% - 5em)',
 			textAlign: 'center'
-		},
-		messagesContainer: {
-			height: '70vh',
-			padding: '6em 3em 3em ',
-			display: 'flex',
-			flexDirection: 'column',
-			overflow: 'auto'
-		},
-		messageUser: {
-			color: colorMessage,
-			backgroundColor: '#161c2e',
-			padding: paddingMessage,
-			borderRadius: '2em 1em 1em 0',
-			width: widthMessage,
-			overflowWrap: overflowWrapMessage
-		},
-		messageFriends: {
-			color: colorMessage,
-			textAlign: 'end',
-			backgroundColor: '#ef6c35',
-			padding: paddingMessage,
-			borderRadius: '1em 2em 0 1em ',
-			width: widthMessage,
-			overflowWrap: overflowWrapMessage,
-			alignSelf: 'flex-end'
 		}
 	});
 });
@@ -82,24 +54,7 @@ const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk
 					<Typography className={classes.typo} variant="h4" component="h1">
 						{myFriends.pseudo} chatRoom
 					</Typography>
-					<div className={classes.messagesContainer}>
-						{talk.map((message: any, index: number) => {
-							return (
-								<p
-									key={index}
-									className={
-										myFriends.pseudo === message.pseudo ? (
-											classes.messageFriends
-										) : (
-											classes.messageUser
-										)
-									}
-								>
-									{message.message}
-								</p>
-							);
-						})}
-					</div>
+					<ContainerMessages talk={talk} myFriends={myFriends} />
 					<form onSubmit={sendMessage(sessionUser.sessionData, myFriends)}>
 						<ChatField label={myFriends.pseudo} />
 						<ButtonSubmit />
