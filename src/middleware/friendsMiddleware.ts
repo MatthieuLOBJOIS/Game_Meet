@@ -90,7 +90,6 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 			const listFriends = action.listFriends;
 			if (listFriends.some((friends: any) => friends.uid === friendsValue.uid)) {
 				myFriends = friendsValue;
-				//console.log(myFriends)
 				return store.dispatch(saveOneFriends(myFriends, listFriends));
 			}
 		}

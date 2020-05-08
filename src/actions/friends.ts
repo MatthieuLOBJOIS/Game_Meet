@@ -5,6 +5,7 @@ export const GET_LIST_FRIENDS = 'GET_LIST_FRIENDS';
 export const DELETE_FRIENDS = 'DELETE_FRIENDS';
 export const GET_ONE_FRIENDS = 'GET_ONE_FRIENDS';
 export const SAVE_ONE_FRIENDS = 'SAVE_ONE_FRIENDS';
+export const SEARCH_FRIENDS = 'SEARCH_FRIENDS';
 
 //action creators
 export const addNewFriends = (user: any, sessionData: any, listFriends: any) => ({
@@ -41,4 +42,9 @@ export const deleteFriends = (value: string, uid: any, listFriends: any) => ({
 	value,
 	uid,
 	listFriends
+});
+
+export const searchFriends = (value: string) => ({
+	type: SEARCH_FRIENDS,
+	value
 });

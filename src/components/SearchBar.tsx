@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+
+type Props = {
+	searchFriends: any;
+	search: string;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -52,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-export default function SearchAppBar() {
+const SearchBar: FunctionComponent<Props> = ({ searchFriends, search }) => {
 	const classes = useStyles();
 
 	return (
@@ -64,6 +69,8 @@ export default function SearchAppBar() {
 							<SearchIcon />
 						</div>
 						<InputBase
+							value={search}
+							onChange={searchFriends}
 							placeholder="Search…"
 							classes={{
 								root: classes.inputRoot,
@@ -76,4 +83,6 @@ export default function SearchAppBar() {
 			</AppBar>
 		</div>
 	);
-}
+};
+
+export default SearchBar;
