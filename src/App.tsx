@@ -41,8 +41,8 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, 
 						<Route component={ErrorNotFound} />
 					</Switch>
 					<Footer />
-					{sessionLogin.isLogged !== true && <Redirect from="/" to={`/${login}`} />};
-					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />};
+					{sessionLogin.isLogged !== true && <Redirect from="/" to={`/${login}`} />}
+					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />}
 				</Router>
 			</Grid>
 		</div>
