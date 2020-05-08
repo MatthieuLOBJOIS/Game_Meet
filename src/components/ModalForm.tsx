@@ -17,8 +17,10 @@ type Props = {
 	isRegister: boolean;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
+const useStyles = makeStyles((theme: Theme) => {
+	let v: string = 'visible';
+
+	return createStyles({
 		modal: {
 			display: 'flex',
 			alignItems: 'center',
@@ -34,9 +36,19 @@ const useStyles = makeStyles((theme: Theme) =>
 				margin: theme.spacing(1),
 				width: '25ch'
 			}
+		},
+		registerMessage: {
+			position: 'absolute',
+			padding: '1em',
+			top: '20%',
+			color: 'white',
+			textAlign: 'center',
+			backgroundColor: '#27AE60',
+			opacity: '1',
+			transition: 'opacity 2s linear'
 		}
-	})
-);
+	});
+});
 
 interface FadeProps {
 	children?: React.ReactElement;
@@ -105,17 +117,7 @@ const ModalForm: FunctionComponent<Props> = ({ login, register, isRegister }) =>
 							</Typography>
 						)}
 						{isRegister === true && (
-							<span
-								style={{
-									position: 'absolute',
-									top: '20%',
-									color: '#ef6c35',
-									textAlign: 'center',
-									backgroundColor: 'red'
-								}}
-							>
-								Votre compte à était enregisté !
-							</span>
+							<p className={classes.registerMessage}>Votre compte à était enregisté !</p>
 						)}
 					</div>
 				</Fade>
