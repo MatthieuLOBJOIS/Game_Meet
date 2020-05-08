@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 //Local imports*
 import Logo from '../assets/logo.png';
 import FriendsList from '../containers/FriendsList';
-import SearchBar from './SearchBar';
+import SearchBar from '../containers/SearchBar';
 import { Link } from 'react-router-dom';
 
 type Props = {

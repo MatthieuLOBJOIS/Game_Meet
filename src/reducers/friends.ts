@@ -1,8 +1,9 @@
-import { SAVE_LIST_FRIENDS, SAVE_ONE_FRIENDS } from '../actions/friends';
+import { SAVE_LIST_FRIENDS, SAVE_ONE_FRIENDS, SEARCH_FRIENDS } from '../actions/friends';
 
 const initialState = {
 	listFriends: [],
-	myFriends: null
+	myFriends: null,
+	search: ''
 };
 
 const friendsReducer = (state = initialState, action: any) => {
@@ -22,6 +23,13 @@ const friendsReducer = (state = initialState, action: any) => {
 				JSON.stringify({ myFriends: action.data, listFriends: action.listFriends })
 			);
 			return { ...state, myFriends: action.data };
+		}
+
+		case SEARCH_FRIENDS: {
+			return {
+				...state,
+				search: action.value
+			};
 		}
 
 		default:
