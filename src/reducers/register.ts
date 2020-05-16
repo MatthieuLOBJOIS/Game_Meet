@@ -2,7 +2,7 @@ import {
 	VALID_STATUS_FIELD,
 	SIGNUP_ERROR,
 	SIGNUP_SUCCESS,
-	SAVE_USER,
+	DISPLAY_ERROR_FIELD,
 	SAVE_USER_COORDINATE,
 	SHOW_PASSWORD,
 	SHOW_CONFIRM_PASSWORD
@@ -11,7 +11,7 @@ import {
 const initialMessage = 'veuillez remplir ce champ';
 const initialState = {
 	name: 'inscription',
-	isSubmit: false,
+	displayError: false,
 	isRegister: false,
 	location: {},
 	showPassword: false,
@@ -69,8 +69,9 @@ const registerReducer = (state = initialState, action: any) => {
 				}
 			};
 		}
-		case SAVE_USER: {
-			return { ...state, isSubmit: true };
+		case DISPLAY_ERROR_FIELD: {
+			console.log('error register');
+			return { ...state, displayError: true };
 		}
 
 		case SIGNUP_ERROR: {

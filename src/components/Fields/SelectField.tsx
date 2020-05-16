@@ -80,7 +80,7 @@ const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, getList
 
 	return (
 		<FormControl error={error} className={classes.formControl}>
-			<InputLabel id="demo-mutiple-chip-label">Choisi tes jeux : </InputLabel>
+			<InputLabel id="demo-mutiple-chip-label">Choisis tes jeux : </InputLabel>
 			<Select
 				className={classes.select}
 				labelId="demo-mutiple-chip-label"

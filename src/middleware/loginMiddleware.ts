@@ -24,7 +24,7 @@ const loginMiddleware = (store: any) => (next: any) => (action: any) => {
 				})
 				.catch((err) => {
 					console.warn(err, 'error');
-					store.dispatch(checkLogged(false));
+					return store.dispatch(checkLogged(false));
 				});
 		}
 		case LOG_OUT: {
