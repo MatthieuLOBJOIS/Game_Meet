@@ -1,6 +1,5 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs';
@@ -10,45 +9,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 //Local imports
 import Form from '../../../containers/Header/ModalForm/Form/Form';
+import useStyles from './style';
 
 type Props = {
 	login: String;
 	register: String;
 	isRegister: boolean;
 };
-
-const useStyles = makeStyles((theme: Theme) => {
-	let v: string = 'visible';
-
-	return createStyles({
-		modal: {
-			display: 'flex',
-			alignItems: 'center',
-			justifyContent: 'center'
-		},
-		paper: {
-			backgroundColor: theme.palette.background.paper,
-			boxShadow: theme.shadows[5],
-			padding: theme.spacing(2, 4, 3)
-		},
-		root: {
-			'& > *': {
-				margin: theme.spacing(1),
-				width: '25ch'
-			}
-		},
-		registerMessage: {
-			position: 'absolute',
-			padding: '1em',
-			top: '20%',
-			color: 'white',
-			textAlign: 'center',
-			backgroundColor: '#27AE60',
-			opacity: '1',
-			transition: 'opacity 2s linear'
-		}
-	});
-});
 
 interface FadeProps {
 	children?: React.ReactElement;

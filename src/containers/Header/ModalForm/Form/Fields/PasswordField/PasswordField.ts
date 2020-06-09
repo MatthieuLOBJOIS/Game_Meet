@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import PasswordField from '../../../../../../components/Header/ModalForm/Form/Fields/PasswordField/PasswordField';
+import PasswordField from '../../../../../../components/Header/ModalForm/Form/Fields/PasswordField';
 
 const mapStateToProps = (state: any) => ({
 	password: state.user.password,

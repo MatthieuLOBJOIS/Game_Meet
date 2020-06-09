@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FriendsList from '../../../../components/Header/Menu/FriendsList/FriendsList';
+import FriendsList from '../../../../components/Header/Menu/FriendsList';
 import { deleteFriends, getListFriends, getOneFriends } from '../../../../actions/friends';
 
 const mapStateToProps = (state: any) => ({

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MapLeaflet from '../../../../components/Pages/Home/MapLeaflet/MapLeaflet';
+import MapLeaflet from '../../../../components/Pages/Home/MapLeaflet';
 import { snapUsers } from '../../../../actions/user';
 
 const mapStateToProps = (state: any) => ({

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ModalForm from '../../../components/Header/ModalForm/ModalForm';
+import ModalForm from '../../../components/Header/ModalForm';
 
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,

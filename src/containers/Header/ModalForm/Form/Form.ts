@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Form from '../../../../components/Header/ModalForm/Form/Form';
+import Form from '../../../../components/Header/ModalForm/Form';
 import { saveUser } from '../../../../actions/register';
 import { logIn } from '../../../../actions/login';
 const mapStateToProps = (state: any) => ({

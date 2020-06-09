@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Menu from '../../../components/Header/Menu/Menu';
+import Menu from '../../../components/Header/Menu';
 import { logOut } from '../../../actions/login';
 
 const mapStateToProps = (state: any) => ({});

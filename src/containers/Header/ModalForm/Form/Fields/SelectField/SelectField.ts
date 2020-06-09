@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SelectField from '../../../../../../components/Header/ModalForm/Form/Fields/SelectField/SelectField';
+import SelectField from '../../../../../../components/Header/ModalForm/Form/Fields/SelectField';
 import { getUrlPictureGames, snapGame } from '../../../../../../actions/games';
 import { validateChangeField } from '../../../../../../actions/register';
 

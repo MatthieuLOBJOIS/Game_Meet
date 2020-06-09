@@ -1,14 +1,14 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useLocation, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 
 //Local imports
 import Fields from '../../../../containers/Header/ModalForm/Form/Fields/Fields';
-import ButtonSubmit from './ButtonSubmit/ButtonSubmit';
+import ButtonSubmit from './ButtonSubmit';
 import '../../../../style/index.css';
+import useStyles from './style';
 
 type Props = {
 	login: String;
@@ -16,20 +16,6 @@ type Props = {
 	handleSubmit: any;
 	isLogged: any;
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			'& > *': {
-				margin: theme.spacing(1),
-				width: '25ch'
-			}
-		},
-		typo: {
-			color: '#161c2e'
-		}
-	})
-);
 
 const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isLogged }) => {
 	const classes = useStyles();

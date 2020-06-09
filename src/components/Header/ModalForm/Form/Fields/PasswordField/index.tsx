@@ -1,9 +1,8 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { TextField, IconButton, InputAdornment } from '@material-ui/core';
+import useStyles from './style';
 
 type Props = {
 	changeField: any;
@@ -16,18 +15,6 @@ type Props = {
 	error: boolean;
 	message: string;
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		margin: {
-			margin: theme.spacing(1)
-		},
-		adornment: {
-			position: 'absolute',
-			left: '100%'
-		}
-	})
-);
 
 const Fields: FunctionComponent<Props> = ({
 	changeField,

@@ -1,6 +1,5 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Drawer, Button } from '@material-ui/core';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import Typography from '@material-ui/core/Typography';
@@ -10,33 +9,13 @@ import Logo from '../../../assets/logo.png';
 import FriendsList from '../../../containers/Header/Menu/FriendsList/FriendsList';
 import SearchBar from '../../../containers/Header/Menu/SearchBar/SearchBar';
 import { Link } from 'react-router-dom';
+import useStyles from './style';
 
 type Props = {
 	logOut: any;
 };
 
 type Anchor = 'left';
-
-const useStyles = makeStyles({
-	menu: {
-		position: 'fixed',
-		zIndex: 1000
-	},
-	paperAnchorLeft: {
-		backgroundColor: '#161c2e'
-	},
-	logo: {
-		height: '20em',
-		width: '20em'
-	},
-	button: {
-		color: '#161c2e'
-	},
-	typo: {
-		color: 'white',
-		textAlign: 'center'
-	}
-});
 
 const Menu: FunctionComponent<Props> = ({ logOut }) => {
 	const classes = useStyles();

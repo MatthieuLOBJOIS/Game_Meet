@@ -1,17 +1,11 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { createMuiTheme, createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
 import { useLocation } from 'react-router-dom';
 import { themeButton } from '../../../../../services/createTheme';
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		margin: {
-			margin: theme.spacing(1)
-		}
-	})
-);
+import useStyles from './style';
 
 const ButtonSubmit: FunctionComponent = () => {
 	const classes = useStyles();

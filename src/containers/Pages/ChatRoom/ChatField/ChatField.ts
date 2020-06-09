@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ChatField from '../../../../components/Pages/ChatRoom/ChatField/ChatField';
+import ChatField from '../../../../components/Pages/ChatRoom/ChatField';
 import { changeMessage } from '../../../../actions/messages';
 
 const mapStateToProps = (state: any) => ({

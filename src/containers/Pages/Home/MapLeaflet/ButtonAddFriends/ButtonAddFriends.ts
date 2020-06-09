@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ButtonAddFriends from '../../../../../components/Pages/Home/MapLeaflet/ButtonAddFriends/ButtonAddFriends';
+import ButtonAddFriends from '../../../../../components/Pages/Home/MapLeaflet/ButtonAddFriends';
 import { addNewFriends } from '../../../../../actions/friends';
 
 const mapStateToProps = (state: any) => ({

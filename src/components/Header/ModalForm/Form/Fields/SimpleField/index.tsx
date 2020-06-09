@@ -1,15 +1,7 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		margin: {
-			margin: theme.spacing(1)
-		}
-	})
-);
+import useStyles from './style';
 
 type Props = {
 	changeField: any;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ChatRoom from '../../../components/Pages/ChatRoom/ChatRoom';
+import ChatRoom from '../../../components/Pages/ChatRoom';
 import { getOneFriends } from '../../../actions/friends';
 import { sendMessage, displayMessages, deleteMessage } from '../../../actions/messages';
 

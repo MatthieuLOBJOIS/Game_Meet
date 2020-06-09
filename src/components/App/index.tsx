@@ -6,10 +6,10 @@ import { Grid } from '@material-ui/core';
 //Local imports
 //Components
 import Header from '../../containers/Header/Header';
-import Footer from '../Footer/Footer';
-import Home from '../Pages/Home/Home';
-import ErrorNotFound from '../Pages/ErrorNotFound/ErrorNotFound';
-import ChatRoom from '../Pages/ChatRoom/ChatRoom';
+import Footer from '../Footer';
+import Home from '../Pages/Home';
+import ErrorNotFound from '../Pages/ErrorNotFound';
+import ChatRoom from '../Pages/ChatRoom';
 
 type Props = {
 	login: String;

@@ -1,12 +1,13 @@
 //Imports of dependencies
 import React, { FunctionComponent, useEffect } from 'react';
-import { createStyles, Theme, makeStyles, useTheme } from '@material-ui/core/styles';
 import { Input, InputLabel } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 //Local imports
 
 import { Select, MenuItem, Chip, FormControl, FormHelperText } from '@material-ui/core';
 import '../../../../../../style/index.css';
+import { getStyles, useStyles } from './style';
 
 type Props = {
 	games: any;
@@ -16,26 +17,6 @@ type Props = {
 	error: boolean;
 	message: string;
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		formControl: {
-			margin: theme.spacing(1),
-			minWidth: 120,
-			maxWidth: 300
-		},
-		chips: {
-			display: 'flex',
-			flexWrap: 'wrap'
-		},
-		chip: {
-			margin: 2
-		},
-		select: {
-			width: 200
-		}
-	})
-);
 
 const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, getListGames, error, message }) => {
 	const classes = useStyles();
@@ -65,13 +46,6 @@ const SelectField: FunctionComponent<Props> = ({ games, id, changeGames, getList
 			}
 		}
 	};
-
-	function getStyles(name: string, gameName: string[], theme: Theme) {
-		return {
-			fontWeight:
-				gameName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium
-		};
-	}
 
 	const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		setGameName(event.target.value as string[]);

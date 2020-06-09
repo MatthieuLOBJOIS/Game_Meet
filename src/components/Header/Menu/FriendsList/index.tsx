@@ -7,7 +7,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { Link } from 'react-router-dom';
 
 //Local imports
-import BadgeAvatars from './BadgeAvatars/BadgeAvatars';
+import BadgeAvatars from './BadgeAvatars';
 
 type Props = {
 	listFriends: any;

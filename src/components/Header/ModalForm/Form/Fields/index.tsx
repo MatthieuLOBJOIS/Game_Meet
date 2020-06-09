@@ -1,12 +1,13 @@
 //Imports of dependencies
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { createStyles, Theme, ThemeProvider, makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 //Local imports
 import SelectField from '../../../../../containers/Header/ModalForm/Form/Fields/SelectField/SelectField';
 import SimpleField from '../../../../../containers/Header/ModalForm/Form/Fields/SimpleField/SimpleField';
 import PasswordField from '../../../../../containers/Header/ModalForm/Form/Fields/PasswordField/PasswordField';
+import { useStyles, theme } from './style';
 
 type Props = {
 	register: String;
@@ -22,30 +23,6 @@ type Props = {
 	valid: any;
 	displayError: boolean;
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			display: 'flex',
-			flexWrap: 'wrap'
-		},
-		margin: {
-			margin: theme.spacing(1)
-		},
-		adornment: {
-			position: 'absolute',
-			left: '100%'
-		}
-	})
-);
-
-const theme = createMuiTheme({
-	palette: {
-		primary: {
-			main: '#ef6c35'
-		}
-	}
-});
 
 const Fields: FunctionComponent<Props> = ({
 	register,

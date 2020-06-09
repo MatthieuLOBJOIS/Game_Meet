@@ -1,11 +1,11 @@
 //Imports of dependencies
 import React, { FunctionComponent, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ChatField from '../../../containers/Pages/ChatRoom/ChatField/ChatField';
-import ButtonSubmit from '../../Header/ModalForm/Form/ButtonSubmit/ButtonSubmit';
-import ContainerMessages from './ContainerMessages/ContainerMessages';
+import ButtonSubmit from '../../Header/ModalForm/Form/ButtonSubmit';
+import ContainerMessages from './ContainerMessages';
+import useStyles from './style';
 
 type Props = {
 	sendMessage: any;
@@ -14,22 +14,6 @@ type Props = {
 	myFriends: any;
 	getOneFriends: any;
 };
-
-const useStyles = makeStyles((theme: Theme) => {
-	return createStyles({
-		typo: {
-			color: '#161c2e',
-			position: 'fixed',
-			right: 'calc(50% - 5em)',
-			top: '0',
-			textAlign: 'center'
-		},
-		contentChat: {
-			width: '50%',
-			margin: 'auto'
-		}
-	});
-});
 
 const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk, myFriends, getOneFriends }) => {
 	const classes = useStyles();

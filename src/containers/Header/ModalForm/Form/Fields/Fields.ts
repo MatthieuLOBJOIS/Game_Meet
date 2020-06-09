@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Fields from '../../../../../components/Header/ModalForm/Form/Fields/Fields';
+import Fields from '../../../../../components/Header/ModalForm/Form/Fields';
 import {
 	validateChangeField,
 	userCoordinate,

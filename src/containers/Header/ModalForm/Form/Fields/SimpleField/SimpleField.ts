@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SimpleField from '../../../../../../components/Header/ModalForm/Form/Fields/SimpleField/SimpleField';
+import SimpleField from '../../../../../../components/Header/ModalForm/Form/Fields/SimpleField';
 
 const mapStateToProps = (state: any) => ({});
 

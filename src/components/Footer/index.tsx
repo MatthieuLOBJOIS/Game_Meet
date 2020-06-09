@@ -1,18 +1,7 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
 import { Grid } from '@material-ui/core';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) => {
-	return createStyles({
-		root: {
-			backgroundColor: '#161c2e',
-			padding: '1em',
-			textAlign: 'center',
-			color: '#ef6c35'
-		}
-	});
-});
+import useStyles from './style';
 
 const Footer: FunctionComponent = () => {
 	const classes = useStyles();

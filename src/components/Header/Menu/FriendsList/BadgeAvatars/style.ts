@@ -1,14 +1,7 @@
-//Imports of dependencies
-import React, { FunctionComponent } from 'react';
-import Badge from '@material-ui/core/Badge';
-import Avatar from '@material-ui/core/Avatar';
 import { Theme, makeStyles, withStyles, createStyles } from '@material-ui/core/styles';
+import Badge from '@material-ui/core/Badge';
 
-type Props = {
-	isLogged: boolean | null;
-};
-
-const StyledBadge = withStyles((theme: Theme) =>
+export const StyledBadge = withStyles((theme: Theme) =>
 	createStyles({
 		badge: {
 			backgroundColor: '#44b700',
@@ -39,7 +32,7 @@ const StyledBadge = withStyles((theme: Theme) =>
 	})
 )(Badge);
 
-const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
@@ -50,25 +43,3 @@ const useStyles = makeStyles((theme: Theme) =>
 		}
 	})
 );
-
-const BadgeAvatars: FunctionComponent<Props> = ({ isLogged }) => {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.root}>
-			<StyledBadge
-				invisible={isLogged ? false : true}
-				overlap="circle"
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'right'
-				}}
-				variant="dot"
-			>
-				<Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-			</StyledBadge>
-		</div>
-	);
-};
-
-export default BadgeAvatars;
