@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../../../../style/index.css';
-import ButtonAddFriends from '../../../../containers/Pages/Home/MapLeaflet/ButtonAddFriends/ButtonAddFriends';
+import ButtonAddFriends from '../../../../containers/Pages/Home/MapLeaflet/ButtonAddFriends';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';

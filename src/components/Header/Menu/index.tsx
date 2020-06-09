@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 //Local imports*
 import Logo from '../../../assets/logo.png';
-import FriendsList from '../../../containers/Header/Menu/FriendsList/FriendsList';
-import SearchBar from '../../../containers/Header/Menu/SearchBar/SearchBar';
+import FriendsList from '../../../containers/Header/Menu/FriendsList';
+import SearchBar from '../../../containers/Header/Menu/SearchBar';
 import { Link } from 'react-router-dom';
 import useStyles from './style';
 

@@ -5,7 +5,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 
 //Local imports
-import Fields from '../../../../containers/Header/ModalForm/Form/Fields/Fields';
+import Fields from '../../../../containers/Header/ModalForm/Form/Fields';
 import ButtonSubmit from './ButtonSubmit';
 import '../../../../style/index.css';
 import useStyles from './style';

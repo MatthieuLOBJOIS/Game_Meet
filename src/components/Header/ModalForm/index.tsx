@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link, useLocation } from 'react-router-dom';
 
 //Local imports
-import Form from '../../../containers/Header/ModalForm/Form/Form';
+import Form from '../../../containers/Header/ModalForm/Form';
 import useStyles from './style';
 
 type Props = {

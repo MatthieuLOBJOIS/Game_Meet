@@ -3,8 +3,8 @@ import React, { FunctionComponent } from 'react';
 import { Route } from 'react-router-dom';
 
 //Local imports
-import Menu from '../../containers/Header/Menu/Menu';
-import ModalForm from '../../containers/Header/ModalForm/ModalForm';
+import Menu from '../../containers/Header/Menu';
+import ModalForm from '../../containers/Header/ModalForm';
 
 type Props = {
 	login: String;

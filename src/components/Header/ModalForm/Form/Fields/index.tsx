@@ -4,9 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 //Local imports
-import SelectField from '../../../../../containers/Header/ModalForm/Form/Fields/SelectField/SelectField';
-import SimpleField from '../../../../../containers/Header/ModalForm/Form/Fields/SimpleField/SimpleField';
-import PasswordField from '../../../../../containers/Header/ModalForm/Form/Fields/PasswordField/PasswordField';
+import SelectField from '../../../../../containers/Header/ModalForm/Form/Fields/SelectField';
+import SimpleField from '../../../../../containers/Header/ModalForm/Form/Fields/SimpleField';
+import PasswordField from '../../../../../containers/Header/ModalForm/Form/Fields/PasswordField';
 import { useStyles, theme } from './style';
 
 type Props = {

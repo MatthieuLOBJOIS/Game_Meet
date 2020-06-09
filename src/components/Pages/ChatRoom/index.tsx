@@ -2,7 +2,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import ChatField from '../../../containers/Pages/ChatRoom/ChatField/ChatField';
+import ChatField from '../../../containers/Pages/ChatRoom/ChatField';
 import ButtonSubmit from '../../Header/ModalForm/Form/ButtonSubmit';
 import ContainerMessages from './ContainerMessages';
 import useStyles from './style';

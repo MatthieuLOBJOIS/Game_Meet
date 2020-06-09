@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 
 //Local imports
 //Components
-import Header from '../../containers/Header/Header';
+import Header from '../../containers/Header';
 import Footer from '../Footer';
 import Home from '../Pages/Home';
 import ErrorNotFound from '../Pages/ErrorNotFound';
