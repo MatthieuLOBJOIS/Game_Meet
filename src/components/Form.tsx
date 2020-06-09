@@ -14,7 +14,7 @@ type Props = {
 	login: String;
 	register: String;
 	handleSubmit: any;
-	isUser: any;
+	isLogged: any;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,15 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser }) => {
+const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isLogged }) => {
 	const classes = useStyles();
 	let location = useLocation();
 	let history = useHistory();
 
-	//let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 	sessionLogin.isLogged === true && history.push('/');
-	//sessionLogin.isLogged === true && window.location.reload();
+
 	return (
 		<form
 			onSubmit={handleSubmit(location.pathname.slice(1), login, register)}
@@ -52,7 +51,7 @@ const Form: FunctionComponent<Props> = ({ handleSubmit, login, register, isUser 
 			</Typography>
 			<Fields />
 			<ButtonSubmit />
-			{sessionLogin.isLogged === false &&
+			{isLogged === false &&
 			location.pathname === `/${login}` && (
 				<Alert variant="outlined" severity="error">
 					Alert — Vos donnée saisies sont incorrect veuillez ressayer !

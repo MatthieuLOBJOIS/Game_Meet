@@ -7,7 +7,8 @@ import {
 	signupError,
 	SAVE_USER,
 	USER_COORDINATE,
-	saveUserCoordinate
+	saveUserCoordinate,
+	displayErrorField
 } from '../actions/register';
 
 const registerMiddleware = (store: any) => (next: any) => (action: any) => {
@@ -32,6 +33,8 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 			const games = !register.chooseGames.status;
 			const listChooseGames = store.getState().games.listChooseGames;
 
+			//console.log('register', mail, password, confirmPassword, pseudo, city, address, games, register.location);
+
 			if (mail && password && confirmPassword && pseudo && city && address && games) {
 				fire
 					.auth()
@@ -55,7 +58,7 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 						return store.dispatch(signupError(err));
 					});
 			} else {
-				return console.log('error register');
+				return store.dispatch(displayErrorField());
 			}
 		}
 		case USER_COORDINATE: {
@@ -76,11 +79,12 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 				};
 
 				let response = await fetch(
-					'http://www.mapquestapi.com/geocoding/v1/address?key=aX1uiXkdfaK7FbmaUiUjxrWgTf903Kz5',
+					'https://www.mapquestapi.com/geocoding/v1/address?key=aX1uiXkdfaK7FbmaUiUjxrWgTf903Kz5',
 					options
 				);
 				let data = await response.json();
 				let location = data.results[0].locations[0].latLng;
+				//console.log('use coordinate', location, data);
 				store.dispatch(saveUserCoordinate(location));
 			};
 			return getLocalization(city, address);

@@ -6,8 +6,7 @@ import { logIn } from '../actions/login';
 const mapStateToProps = (state: any) => ({
 	login: state.login.name,
 	register: state.register.name,
-	isLogged: state.user.isLogged,
-	isUser: state.user
+	isLogged: state.login.isLogged
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

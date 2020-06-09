@@ -15,7 +15,7 @@ const ChatField: FunctionComponent<Props> = ({ label, changeMessage, message }) 
 			value={message}
 			id="outlined-full-width"
 			label={`à ${label}`}
-			style={{ margin: 8, width: '80vw' }}
+			style={{ margin: 8 }}
 			placeholder="Discussion"
 			fullWidth
 			margin="normal"

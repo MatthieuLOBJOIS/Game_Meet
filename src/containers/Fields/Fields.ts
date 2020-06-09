@@ -12,7 +12,7 @@ const mapStateToProps = (state: any) => ({
 	city: state.register.city.value,
 	address: state.register.address.value,
 	valid: state.register,
-	isSubmit: state.register.isSubmit
+	displayError: state.register.displayError
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: any) => ({
 		let newValue = event.target.value;
 		let identifier = event.target.id;
 		//console.log(newValue, identifier);
-		//dispatch(changeField(newValue, identifier));
+
 		dispatch(validateChangeField(newValue, identifier));
 	},
 	userCoordinate: () => {

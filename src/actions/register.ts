@@ -8,6 +8,7 @@ export const USER_COORDINATE = 'USER_COORDINATE';
 export const SAVE_USER_COORDINATE = 'SAVE_USER_COORDINATE';
 export const SHOW_PASSWORD = 'SHOW_PASSWORD';
 export const SHOW_CONFIRM_PASSWORD = 'SHOW_CONFIRM_PASSWORD';
+export const DISPLAY_ERROR_FIELD = 'DISPLAY_ERROR_FIELD';
 
 //action creators
 export const validStatusField = (status: boolean, message: string, target: string, newValue: any) => ({
@@ -52,4 +53,8 @@ export const showConfirmPassword = () => ({
 
 export const userCoordinate = () => ({
 	type: USER_COORDINATE
+});
+
+export const displayErrorField = () => ({
+	type: DISPLAY_ERROR_FIELD
 });

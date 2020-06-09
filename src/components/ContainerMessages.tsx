@@ -11,22 +11,24 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) => {
 	const colorMessage = 'white';
 	const paddingMessage = '0 1em 1em';
-	const widthMessage = '50%';
+	const widthMessage = 'max-content';
 	const overflowWrapMessage = 'break-word';
 	return createStyles({
 		messagesContainer: {
-			height: '70vh',
+			height: '50vh',
+			margin: '6em auto 1em',
 			padding: '6em 3em 3em ',
 			display: 'flex',
 			flexDirection: 'column',
-			overflow: 'auto'
+			overflow: 'auto',
+			backgroundColor: 'white'
 		},
 		messageUser: {
 			color: colorMessage,
 			backgroundColor: '#161c2e',
 			padding: paddingMessage,
 			borderRadius: '2em 1em 1em 0',
-			width: widthMessage,
+			maxWidth: widthMessage,
 			overflowWrap: overflowWrapMessage
 		},
 		messageFriends: {
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => {
 			backgroundColor: '#ef6c35',
 			padding: paddingMessage,
 			borderRadius: '1em 2em 0 1em ',
-			width: widthMessage,
+			maxWidth: widthMessage,
 			overflowWrap: overflowWrapMessage,
 			alignSelf: 'flex-end'
 		},

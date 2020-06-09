@@ -22,7 +22,12 @@ const useStyles = makeStyles((theme: Theme) => {
 			color: '#161c2e',
 			position: 'fixed',
 			right: 'calc(50% - 5em)',
+			top: '0',
 			textAlign: 'center'
+		},
+		contentChat: {
+			width: '50%',
+			margin: 'auto'
 		}
 	});
 });
@@ -47,10 +52,10 @@ const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk
 	);
 
 	return (
-		<Grid item style={{ height: '100vh' }} xs={12}>
+		<Grid item style={{ height: '100vh', backgroundColor: '#FFD29C' }} xs={12}>
 			{sessionLogin.isLogged === true &&
 			myFriends !== null && (
-				<div>
+				<div className={classes.contentChat}>
 					<Typography className={classes.typo} variant="h4" component="h1">
 						{myFriends.pseudo} chatRoom
 					</Typography>

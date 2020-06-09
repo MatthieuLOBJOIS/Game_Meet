@@ -2,6 +2,20 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../style/index.css';
 import ButtonAddFriends from '../containers/ButtonAddFriends';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+	iconSize: [ 25, 41 ],
+	iconAnchor: [ 10, 41 ],
+	popupAnchor: [ 2, -40 ],
+	iconUrl: icon,
+	shadowUrl: iconShadow
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 type Props = {
 	snapUsers: any;
@@ -29,7 +43,8 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) 
 			zoom={12}
 		>
 			<TileLayer
-				url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+				//url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+				url="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
 				attribution="&copy; <a href=&quot;https://stadiamaps.com/&quot;>Stadia Maps</a>, &copy; <a href=&quot;https://openmaptiles.org/&quot;>OpenMapTiles</a> &copy; <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors"
 			/>
 			{data.map((user: any) => (
