@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 //Local imports
-import App from './containers/App';
+import App from './containers/App/App';
 import './style/index.css';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
