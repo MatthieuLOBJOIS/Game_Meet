@@ -3,8 +3,7 @@ import MapLeaflet from '../../../../components/Pages/Home/MapLeaflet';
 import { snapUsers } from '../../../../actions/user';
 
 const mapStateToProps = (state: any) => ({
-	data: state.user.listUsersData,
-	listFriends: state.friends.listFriends
+	data: state.user.listUsersData
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

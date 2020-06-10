@@ -20,10 +20,9 @@ L.Marker.prototype.options.icon = DefaultIcon;
 type Props = {
 	snapUsers: any;
 	data: Array<Object> | any;
-	listFriends: any;
 };
 
-const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) => {
+const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data }) => {
 	let sessionUser = JSON.parse(localStorage.getItem('isUser') || '{}');
 	let sessionLogin = JSON.parse(localStorage.getItem('isLogged') || '{}');
 
@@ -70,7 +69,7 @@ const MapLeaflet: FunctionComponent<Props> = ({ snapUsers, data, listFriends }) 
 								<ButtonAddFriends
 									user={user}
 									sessionData={sessionUser.sessionData}
-									listFriends={listFriends}
+									pseudo={user.pseudo}
 								/>
 							) : (
 								''

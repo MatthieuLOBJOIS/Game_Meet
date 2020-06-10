@@ -1,8 +1,9 @@
 //Imports of dependencies
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import { themeButton } from '../../../../../services/createTheme';
 import useStyles from './style';
 
@@ -11,11 +12,30 @@ type Props = {
 	user: any;
 	sessionData: any;
 	listFriends: any;
+	addFriendsResponse: string;
+	pseudo: string;
 };
 
-const ButtonAddFriends: FunctionComponent<Props> = ({ addNewFriends, user, sessionData, listFriends }) => {
+const ButtonAddFriends: FunctionComponent<Props> = ({
+	addNewFriends,
+	user,
+	sessionData,
+	listFriends,
+	addFriendsResponse,
+	pseudo
+}) => {
 	//console.log(sessionData.friends, pseudo);
 	const classes = useStyles();
+	//console.log(addFriendsResponse);
+	const [ friendsResponse, setFriendsResponse ] = useState<string>('');
+
+	useEffect(
+		() => {
+			setFriendsResponse(addFriendsResponse);
+		},
+		[ addFriendsResponse ]
+	);
+
 	return (
 		<div>
 			<ThemeProvider theme={themeButton}>
@@ -29,6 +49,12 @@ const ButtonAddFriends: FunctionComponent<Props> = ({ addNewFriends, user, sessi
 					Ajouter en Amis
 				</Button>
 			</ThemeProvider>
+			{friendsResponse === 'success' && (
+				<Alert variant="filled" severity="success">{`${pseudo} est votre amis !`}</Alert>
+			)}
+			{friendsResponse === 'warn' && (
+				<Alert variant="filled" severity="warning">{`${pseudo} est déjà votre amis !`}</Alert>
+			)}
 		</div>
 	);
 };

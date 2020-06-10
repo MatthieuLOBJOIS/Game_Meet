@@ -15,6 +15,7 @@ type Props = {
 	getListFriends: any;
 	getOneFriends: any;
 	search: string;
+	addFriendsResponse: string;
 };
 
 const FriendsList: FunctionComponent<Props> = ({
@@ -22,7 +23,8 @@ const FriendsList: FunctionComponent<Props> = ({
 	deleteFriends,
 	getListFriends,
 	getOneFriends,
-	search
+	search,
+	addFriendsResponse
 }) => {
 	const [ display, setDisplay ] = useState({ status: 'none', value: '' });
 	const [ listColor, setListColor ] = useState({ background: '#161c2e', color: 'white' });
@@ -59,6 +61,13 @@ const FriendsList: FunctionComponent<Props> = ({
 	useEffect(() => {
 		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
 	}, []);
+
+	useEffect(
+		() => {
+			sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
+		},
+		[ addFriendsResponse ]
+	);
 
 	useEffect(
 		() => {

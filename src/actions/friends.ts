@@ -1,5 +1,6 @@
 //action type
 export const ADD_NEW_FRIENDS = 'ADD_NEW_FRIENDS';
+export const ADD_NEW_FRIENDS_RESPONSE = 'ADD_NEW_FRIENDS_RESPONSE';
 export const SAVE_LIST_FRIENDS = 'SAVE_LIST_FRIENDS';
 export const GET_LIST_FRIENDS = 'GET_LIST_FRIENDS';
 export const DELETE_FRIENDS = 'DELETE_FRIENDS';
@@ -13,6 +14,11 @@ export const addNewFriends = (user: any, sessionData: any, listFriends: any) => 
 	user,
 	sessionData,
 	listFriends
+});
+
+export const addNewFriendsResponse = (response: string) => ({
+	type: ADD_NEW_FRIENDS_RESPONSE,
+	response
 });
 
 export const saveListFriends = (response: any) => ({
