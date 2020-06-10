@@ -1,6 +1,6 @@
 //Imports of dependencies
 import React, { FunctionComponent } from 'react';
-import { Drawer, Button, Hidden } from '@material-ui/core';
+import { Drawer, Button, Hidden, Tooltip } from '@material-ui/core';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import Typography from '@material-ui/core/Typography';
 
@@ -40,9 +40,11 @@ const Menu: FunctionComponent<Props> = ({ logOut }) => {
 
 	const drawer = (
 		<div className={classes.drawer}>
-			<Link to="/">
-				<img className={classes.logo} src={Logo} />
-			</Link>
+			<Tooltip placement="right" title="Retour à l'accueil" aria-label="Retour à l'accueil" arrow>
+				<Link to="/">
+					<img className={classes.logo} src={Logo} />
+				</Link>
+			</Tooltip>
 			<SearchBar />
 			<Typography className={classes.typo} variant="h6" component="h2">
 				Messages privés
