@@ -42,6 +42,11 @@ const FriendsList: FunctionComponent<Props> = ({
 				backgroundColor: listColor.background,
 				color: listColor.color
 			},
+			listHover: {
+				'&:hover': {
+					backgroundColor: 'grey'
+				}
+			},
 			iconColor: {
 				color: '#161c2e',
 				display: display.status
@@ -83,7 +88,9 @@ const FriendsList: FunctionComponent<Props> = ({
 				const labelId = `checkbox-list-secondary-label-${value.pseudo}`;
 				return (
 					<div key={value.pseudo} onClick={handleDisplayIconClick} id={`${value.pseudo}`}>
-						<ListItem className={`${value.pseudo}` === display.value ? classes.listBackground : ''}>
+						<ListItem
+							className={`${value.pseudo}` === display.value ? classes.listBackground : classes.listHover}
+						>
 							<ListItemAvatar>
 								<BadgeAvatars isLogged={value.isLogged} />
 							</ListItemAvatar>

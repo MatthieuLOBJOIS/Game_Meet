@@ -14,7 +14,7 @@ type Props = {
 const Header: FunctionComponent<Props> = ({ login, register }) => {
 	return (
 		<div>
-			<Menu />
+			<Route exact path={[ `/`, `/chatroom/:id` ]} component={Menu} />
 			<Route path={[ `/${login}`, `/${register}` ]} component={ModalForm} />
 		</div>
 	);
