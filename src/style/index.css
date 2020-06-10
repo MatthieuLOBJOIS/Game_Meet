@@ -15,10 +15,6 @@ code {
 	height: 100vh;
 }
 
-.leaflet-top {
-	top: 80%;
-}
-
 .leaflet-marker-icon {
 	filter: hue-rotate(160deg);
 	-webkit-filter: hue-rotate(160deg);
@@ -32,4 +28,16 @@ code {
 .MuiListItem-root.Mui-selected:hover {
 	/* Increase the specificity */
 	background-color: #ef6c35 !important;
+}
+
+@media screen and (max-width: 640px) {
+	.leaflet-left {
+		left: 80vw !important;
+	}
+}
+
+@media screen and (min-width: 641px) {
+	.leaflet-left {
+		left: 90vw !important;
+	}
 }
