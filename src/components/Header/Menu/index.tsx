@@ -39,7 +39,7 @@ const Menu: FunctionComponent<Props> = ({ logOut }) => {
 	const anchor = 'left';
 
 	const drawer = (
-		<div>
+		<div className={classes.drawer}>
 			<Link to="/">
 				<img className={classes.logo} src={Logo} />
 			</Link>

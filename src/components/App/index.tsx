@@ -40,7 +40,6 @@ const App: FunctionComponent<Props> = ({ login, register, isLogged, isRegister, 
 						<Route exact path={'/chatroom/:id'} component={ChatRoom} />
 						<Route component={ErrorNotFound} />
 					</Switch>
-					<Footer />
 					{sessionLogin.isLogged !== true && <Redirect from="/" to={`/${login}`} />}
 					{isRegister === true && <Redirect from={`/${register}`} to={`/${login}`} />}
 				</Router>
