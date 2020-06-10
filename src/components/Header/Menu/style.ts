@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		typo: {
 			color: 'white',
-			textAlign: 'center'
+			textAlign: 'center',
+			paddingTop: '1em'
 		},
 		drawer: {
 			display: 'flex',
