@@ -9,7 +9,7 @@ import Header from '../../containers/Header';
 import Footer from '../Footer';
 import Home from '../Pages/Home';
 import ErrorNotFound from '../Pages/ErrorNotFound';
-import ChatRoom from '../Pages/ChatRoom';
+import ChatRoom from '../../containers/Pages/ChatRoom/index';
 
 type Props = {
 	login: String;
