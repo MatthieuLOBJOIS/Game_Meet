@@ -35,7 +35,7 @@ const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk
 	);
 
 	return (
-		<Grid item style={{ height: '100vh', backgroundColor: '#FFD29C' }} xs={12}>
+		<div className={classes.root}>
 			{sessionLogin.isLogged === true &&
 			myFriends !== null && (
 				<div className={classes.contentChat}>
@@ -49,7 +49,7 @@ const ChatRoom: FunctionComponent<Props> = ({ sendMessage, displayMessages, talk
 					</form>
 				</div>
 			)}
-		</Grid>
+		</div>
 	);
 };
 
