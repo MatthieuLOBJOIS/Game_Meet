@@ -1,9 +1,10 @@
-import { SAVE_LIST_FRIENDS, SAVE_ONE_FRIENDS, SEARCH_FRIENDS } from '../actions/friends';
+import { SAVE_LIST_FRIENDS, SAVE_ONE_FRIENDS, SEARCH_FRIENDS, ADD_NEW_FRIENDS_RESPONSE } from '../actions/friends';
 
 const initialState = {
 	listFriends: [],
 	myFriends: null,
-	search: ''
+	search: '',
+	addFriendsResponse: null
 };
 
 const friendsReducer = (state = initialState, action: any) => {
@@ -29,6 +30,13 @@ const friendsReducer = (state = initialState, action: any) => {
 			return {
 				...state,
 				search: action.value
+			};
+		}
+
+		case ADD_NEW_FRIENDS_RESPONSE: {
+			return {
+				...state,
+				addFriendsResponse: action.response
 			};
 		}
 

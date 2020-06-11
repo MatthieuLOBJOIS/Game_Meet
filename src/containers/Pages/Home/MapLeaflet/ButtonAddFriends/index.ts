@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 
 import ButtonAddFriends from '../../../../../components/Pages/Home/MapLeaflet/ButtonAddFriends';
-import { addNewFriends } from '../../../../../actions/friends';
+import { addNewFriends, addNewFriendsResponse } from '../../../../../actions/friends';
 
 const mapStateToProps = (state: any) => ({
-	data: state.user.listUsersData
+	data: state.user.listUsersData,
+	listFriends: state.friends.listFriends,
+	addFriendsResponse: state.friends.addFriendsResponse
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

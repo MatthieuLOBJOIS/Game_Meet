@@ -1,6 +1,7 @@
 import {
 	ADD_NEW_FRIENDS,
 	saveListFriends,
+	addNewFriendsResponse,
 	GET_LIST_FRIENDS,
 	DELETE_FRIENDS,
 	GET_ONE_FRIENDS,
@@ -10,43 +11,52 @@ import fire, { db } from '../config/fire';
 
 const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 	switch (action.type) {
-		case ADD_NEW_FRIENDS: {
-			const uid = action.sessionData.uid;
-			const arrayFriends = action.listFriends;
-			const pseudoFriends = action.user.pseudo;
-			const user = action.user;
-			let found = null;
-			//console.log(isLogged);
-			// An array of objects
-			// Find if the array contains an object by comparing the property value
-			if (arrayFriends.some((friends: any) => friends.pseudo === pseudoFriends)) {
-				found = true;
-			} else {
-				found = false;
-			}
+		case ADD_NEW_FRIENDS:
+			{
+				const uid = action.sessionData.uid;
+				const arrayFriends = action.listFriends;
+				const pseudoFriends = action.user.pseudo;
+				const user = action.user;
+				let found = null;
+				//console.log(isLogged);
+				// An array of objects
+				// Find if the array contains an object by comparing the property value
+				if (arrayFriends.some((friends: any) => friends.pseudo === pseudoFriends)) {
+					found = true;
+				} else {
+					found = false;
+				}
 
-			if (!found) {
-				arrayFriends.push(user);
+				if (!found) {
+					arrayFriends.push(user);
 
-				return db
-					.collection('users')
-					.doc(uid)
-					.update({
-						friends: arrayFriends
-					})
-					.then(() => {
-						return store.dispatch(saveListFriends(arrayFriends));
-					});
+					return db
+						.collection('users')
+						.doc(uid)
+						.update({
+							friends: arrayFriends
+						})
+						.then(() => {
+							store.dispatch(addNewFriendsResponse('success'));
+							setTimeout(() => {
+								store.dispatch(addNewFriendsResponse(''));
+							}, 2000);
+							//return store.dispatch(saveListFriends(arrayFriends));
+						});
+				}
+				store.dispatch(addNewFriendsResponse('warn'));
+				setTimeout(() => {
+					store.dispatch(addNewFriendsResponse(''));
+				}, 2000);
 			}
-			return console.log('its a friend');
-		}
+			break;
 
 		case DELETE_FRIENDS: {
 			const friends = action.value;
 			const uid = action.uid;
 			const listFriends = action.listFriends;
 			const newListFriends = listFriends.filter((name: any) => {
-				if (name.pseudo != friends) {
+				if (name.pseudo !== friends) {
 					return name.pseudo;
 				}
 			});
@@ -58,7 +68,7 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 					friends: newListFriends
 				})
 				.then(() => {
-					store.dispatch(saveListFriends(newListFriends));
+					return store.dispatch(saveListFriends(newListFriends));
 				});
 		}
 
@@ -74,8 +84,7 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 					if (friends.uid !== undefined) {
 						db.collection('users').doc(friends.uid).get().then(function(querySnapshot) {
 							NewFriendsArray.push(querySnapshot.data());
-							//console.log(friendsArray.length, NewFriendsArray.length);
-							if (friendsArray.length == NewFriendsArray.length) {
+							if (friendsArray.length === NewFriendsArray.length) {
 								return store.dispatch(saveListFriends(NewFriendsArray));
 							}
 						});
@@ -84,16 +93,17 @@ const friendsMiddleware = (store: any) => (next: any) => (action: any) => {
 			});
 		}
 
-		case GET_ONE_FRIENDS: {
-			const friendsValue = action.value;
-			let myFriends = '';
-			const listFriends = action.listFriends;
-			if (listFriends.some((friends: any) => friends.uid === friendsValue.uid)) {
-				myFriends = friendsValue;
-				return store.dispatch(saveOneFriends(myFriends, listFriends));
+		case GET_ONE_FRIENDS:
+			{
+				const friendsValue = action.value;
+				let myFriends = '';
+				const listFriends = action.listFriends;
+				if (listFriends.some((friends: any) => friends.uid === friendsValue.uid)) {
+					myFriends = friendsValue;
+					return store.dispatch(saveOneFriends(myFriends, listFriends));
+				}
 			}
-		}
-
+			break;
 		default:
 			next(action);
 	}

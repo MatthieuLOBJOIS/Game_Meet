@@ -15,6 +15,7 @@ type Props = {
 	getListFriends: any;
 	getOneFriends: any;
 	search: string;
+	addFriendsResponse: string;
 };
 
 const FriendsList: FunctionComponent<Props> = ({
@@ -22,7 +23,8 @@ const FriendsList: FunctionComponent<Props> = ({
 	deleteFriends,
 	getListFriends,
 	getOneFriends,
-	search
+	search,
+	addFriendsResponse
 }) => {
 	const [ display, setDisplay ] = useState({ status: 'none', value: '' });
 	const [ listColor, setListColor ] = useState({ background: '#161c2e', color: 'white' });
@@ -47,9 +49,20 @@ const FriendsList: FunctionComponent<Props> = ({
 					backgroundColor: 'grey'
 				}
 			},
-			iconColor: {
+			iconMsg: {
 				color: '#161c2e',
-				display: display.status
+				display: display.status,
+				'&:hover': {
+					color: '#3F51B5'
+				}
+			},
+			iconCross: {
+				color: '#161c2e',
+				display: display.status,
+				cursor: 'pointer',
+				'&:hover': {
+					color: '#BC074C'
+				}
 			}
 		})
 	);
@@ -59,6 +72,13 @@ const FriendsList: FunctionComponent<Props> = ({
 	useEffect(() => {
 		sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
 	}, []);
+
+	useEffect(
+		() => {
+			sessionLogin.isLogged === true && getListFriends(sessionLogin.uid);
+		},
+		[ addFriendsResponse ]
+	);
 
 	useEffect(
 		() => {
@@ -100,7 +120,7 @@ const FriendsList: FunctionComponent<Props> = ({
 									to={`/chatroom/${value.pseudo}?sort=chat`}
 									onClick={getOneFriends(value, listFriends)}
 								>
-									<ChatIcon className={classes.iconColor} />
+									<ChatIcon className={classes.iconMsg} />
 								</Link>
 							) : (
 								''
@@ -108,7 +128,7 @@ const FriendsList: FunctionComponent<Props> = ({
 							{`${value.pseudo}` === display.value ? (
 								<CloseIcon
 									onClick={deleteFriends(value.pseudo, sessionLogin.uid, listFriends)}
-									className={classes.iconColor}
+									className={classes.iconCross}
 								/>
 							) : (
 								''

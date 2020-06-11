@@ -6,7 +6,8 @@ import { deleteFriends, getListFriends, getOneFriends } from '../../../../action
 const mapStateToProps = (state: any) => ({
 	user: state.user,
 	listFriends: state.friends.listFriends,
-	search: state.friends.search
+	search: state.friends.search,
+	addFriendsResponse: state.friends.addFriendsResponse
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
