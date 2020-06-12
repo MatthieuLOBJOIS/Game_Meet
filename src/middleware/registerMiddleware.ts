@@ -61,6 +61,7 @@ const registerMiddleware = (store: any) => (next: any) => (action: any) => {
 				return store.dispatch(displayErrorField());
 			}
 		}
+			break;
 		case USER_COORDINATE: {
 			let city = store.getState().register.city.value;
 			let address = store.getState().register.address.value;
