@@ -1,7 +1,16 @@
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => {
-	return createStyles({
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			[theme.breakpoints.up('sm')]: {
+				marginLeft: '22em',
+				width: '70%'
+			},
+			[theme.breakpoints.down('xs')]: {
+				marginLeft: '2em'
+			}
+		},
 		typo: {
 			color: '#161c2e',
 			position: 'fixed',
@@ -9,11 +18,8 @@ const useStyles = makeStyles((theme: Theme) => {
 			top: '0',
 			textAlign: 'center'
 		},
-		contentChat: {
-			width: '50%',
-			margin: 'auto'
-		}
-	});
-});
+		contentChat: {}
+	})
+);
 
 export default useStyles;
